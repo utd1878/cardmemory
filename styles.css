@@ -1,0 +1,102 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+.cardContainer{
+    padding: 10px;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+}
+
+.row {
+    width: 299px;
+}
+
+.cell {
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.title-row {
+    background-color: #ddd;
+    font-weight: bold;
+}
+
+.label-cell {
+    background-color: #eee;
+}
+
+.input-cell {
+    background-color: #fff;
+}
+
+.input-cell[data-row="1"], .label-cell[data-col="1"] {
+    background-color: #ddd;
+    color: black;
+}
+
+.cell[data-col="1"]{
+    width:115px;
+}
+.cell[data-col="2"],
+.cell[data-col="3"],
+.cell[data-col="4"],
+.cell[data-col="5"]{
+    width:46px;
+}
+
+
+/* Specify colors for each row and column */
+.cell[data-row="1"][data-col="1"] {
+    background-color: Red;
+    color: White;
+}
+
+.cell[data-row="2"][data-col="1"]  {
+    background-color: Yellow;
+}
+
+.cell[data-row="3"][data-col="1"]{
+    background-color: Green;
+}
+
+.cell[data-row="4"][data-col="1"] {
+    background-color: Blue;
+    color: white;
+}
+
+/* Specific cell styling for Row 1, Column 2-5 */
+.cell[data-row="1"][data-col="2"] {
+    background-color: LightBlue;
+    color: White;
+}
+
+.cell[data-row="1"][data-col="3"] {
+    background-color: Red;
+    color: White;
+}
+
+.cell[data-row="1"][data-col="4"] {
+    background-color: LightBlue;
+    color: White;
+}
+
+.cell[data-row="1"][data-col="5"] {
+    background-color: Red;
+    color: White;
+}
