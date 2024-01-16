@@ -65,6 +65,17 @@ body {
     
     transition: width .2s ease-out, padding-top .2s ease-out;
   }
+
+#tabContainer {
+    white-space: nowrap;
+    overflow: auto;
+    width:100%;
+}
+#tabContainer ul li {
+    display: inline-block;
+    float: none;
+    vertical-align: bottom;
+} 
 .ui-tabs .ui-tabs-panel {
 
     padding: 1em 0.3em !important;
