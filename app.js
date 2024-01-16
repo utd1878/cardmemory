@@ -91,8 +91,8 @@ function fillTab(currentCard) {
         <div id="showHideButton" class="show-hide-button" onclick="toggleMainCard()">
             <i id="icon" class="material-icons">visibility</i>
         </div>
-        <button onclick="addNewBlankBoard('`+ currentCard.id + `')">Add Blank Board</button>
-        <button onclick="addNewRandomBoard('`+ currentCard.id + `')">Add Radom Board</button>
+        <button onclick="addNewBlankBoard('`+ currentCard.id + `')">Blank Board</button>
+        <button onclick="addNewRandomBoard('`+ currentCard.id + `')">Radom Board</button>
     </div>`);
 
     addCard(currentCard);
@@ -148,11 +148,16 @@ function addCard(currentCard) {
     });
 }
 function addCardHtml(currentCard, empty, random) {
-    let cardHtml = "<div class='card " + (empty ? 'empty' : '') + (random ? 'random' : '') + "' data-id=" + currentCard.id + ">";
+    let cardHtml = `<div class='card ` + (empty ? 'empty' : '') + (random ? 'random' : '') + `' data-id=` + currentCard.id + `>`;
     let titleRow = "<div class='row title-row'>";
     const cardContent = $("#cardContent_" + currentCard.id);
 
-    titleRow = titleRow += `<div class='cell title-cell' colspan='${currentCard.grid.size.length + 1}'>${currentCard.title}</div></div>`;
+    titleRow = titleRow += `<div class='cell title-cell' colspan='${currentCard.grid.size.length + 1}'>${currentCard.title}
+        <span id="removeBoard" class="remove-button" onclick="removeCard('`+ currentCard.id + `','` + (empty ? 'empty' : 'random') + `')">
+            <i id="icon" class="material-icons">clear</i>
+        </span>
+        </div>
+        </div>`;
     //$('#cardContainer' + currentCard.id).prepend(titleRow);
     cardHtml += titleRow;
 
@@ -238,6 +243,10 @@ function addNewRandomBoard(id) {
 
 }
 
+function removeCard(card, board) {
+    $('#cardContainer' + card + ' > .' + board).remove();
+}
+
 var cardCollection = [];
 $(document).ready(function () {
     cardCollection = getCardCollection();
@@ -262,7 +271,7 @@ $(document).ready(function () {
         })[0]; // You need to implement a method to get the current card object
 
         // Call verifyInput method
-        verifyInput(card, row, col, enteredValue);
+        $(this).removeClass('bad').removeClass('good').addClass(verifyInput(card, row, col, enteredValue) ? "good" : "bad");
     });
 
     // Event listener for the "Next Card" button

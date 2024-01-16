@@ -9,9 +9,12 @@ body {
 }
 .container {
     height: 100vh;
+    margin-bottom:30px;
 }
 
-
+.card{
+    padding-top:15px;
+}
 .cardContainer{
     padding: 10px;
 }
@@ -22,13 +25,13 @@ body {
 }
 
 .row {
-    width: 299px;
+    width: 320px;
 }
 
 .cell {
     box-sizing: border-box;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
 }
 
 .title-row {
@@ -38,25 +41,46 @@ body {
 
 .label-cell {
     background-color: #eee;
+    
+}
+.title-cell{
+    display: flex;
+    justify-content: space-between;
 }
 
 .input-cell {
     background-color: #fff;
+    
+}
+.input-cell:focus{
+    outline:none;
 }
 
-.input-cell[data-row="1"], .label-cell[data-col="1"] {
+.input-cell.good {
+    /* border: 2px solid rgba(0, 128, 0, 0.5); */
+    outline: 8px solid rgba(0, 128, 0, 0.3);
+    outline-offset: -7px;
+}
+.input-cell.bad {
+    /* border: 2px solid rgba(128, 0, 0, 0.5);   */
+    outline: 8px solid rgba(128, 0, 0, 0.3);
+    outline-offset: -7px;
+}
+
+.input-cell[data-row="1"], 
+.label-cell[data-col="1"] {
     background-color: #ddd;
     color: black;
 }
 
 .cell[data-col="1"]{
-    width:115px;
+    width:120px;
 }
 .cell[data-col="2"],
 .cell[data-col="3"],
 .cell[data-col="4"],
 .cell[data-col="5"]{
-    width:46px;
+    width:50px;
 }
 
 
