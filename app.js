@@ -88,11 +88,13 @@ function fillTab(currentCard) {
         <div class="card" id="parentCard">
             <div class="cardGrid" id="cardContent_` + currentCard.id + `"></div>
         </div>
-        <div id="showHideButton" class="show-hide-button" onclick="toggleMainCard()">
-            <i id="icon" class="material-icons">visibility_off</i><i style="font-size: 16px;transform: translateY(4px);">click this icon to hide/show the answer board</i>
+        <div id="showHideButton" class="show-hide-button" onclick="toggleMainCard('`+ currentCard.id + `')">
+            <i id="icon" class="material-icons">visibility_off</i><i style="font-size: 14px;transform: translateY(4px);">click this icon to hide/show the answer board</i>
         </div>
-        <button onclick="addNewBlankBoard('`+ currentCard.id + `')">Blank Board</button>
-        <button onclick="addNewRandomBoard('`+ currentCard.id + `')">Random Board</button>
+        <div class='buttons'>
+            <button onclick="addNewBlankBoard('`+ currentCard.id + `')" class="btn" type="button">Blank Board</button>
+            <button onclick="addNewRandomBoard('`+ currentCard.id + `')" class="btn" type="button">Random Board</button>
+        </div>
     </div>`);
 
     addCard(currentCard);
@@ -100,8 +102,8 @@ function fillTab(currentCard) {
 
 }
 
-function toggleMainCard() {
-    const contentToToggle = document.getElementById('parentCard');
+function toggleMainCard(id) {
+    const contentToToggle = $('#cardContainer' + id + ' > #parentCard')[0];// document.getElementById('cardContainer' + id + ' > parentCard');
     const icon = document.getElementById('icon');
 
     // Toggle visibility
