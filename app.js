@@ -76,7 +76,6 @@ function getCardCollection() {
 
 
 function createTabs(card) {
-    const currentCard = card;//cards[currentCardIndex];
     $('.container #tabs').append('<li><a href="#cardContainer' + card.id + '">' + card.shortTitle + '</li>')
 
     fillTab(card);
@@ -84,18 +83,43 @@ function createTabs(card) {
 }
 
 function fillTab(currentCard) {
-    $('.container').append('<div class="cardContainer" id="cardContainer' + currentCard.id + '"> <div class="card" id="cardContent_' + currentCard.id + '"></div></div>');
+    $('.container').append(`
+    <div class="cardContainer" id="cardContainer` + currentCard.id + `">
+        <div class="card" id="parentCard">
+            <div class="cardGrid" id="cardContent_` + currentCard.id + `"></div>
+        </div>
+        <div id="showHideButton" class="show-hide-button" onclick="toggleMainCard()">
+            <i id="icon" class="material-icons">visibility</i>
+        </div>
+        <button onclick="addNewBlankBoard('`+ currentCard.id + `')">Add Blank Board</button>
+        <button onclick="addNewRandomBoard('`+ currentCard.id + `')">Add Radom Board</button>
+    </div>`);
 
     addCard(currentCard);
-    $('.cardContainer').append(addCardHtml(currentCard, true));
+
 
 }
+
+function toggleMainCard() {
+    const contentToToggle = document.getElementById('parentCard');
+    const icon = document.getElementById('icon');
+
+    // Toggle visibility
+    if (contentToToggle.style.display === 'none') {
+        contentToToggle.style.display = 'block';
+        icon.textContent = 'visibility_off'; // Change to 'visibility_off' when content is visible
+    } else {
+        contentToToggle.style.display = 'none';
+        icon.textContent = 'visibility'; // Change to 'visibility' when content is hidden
+    }
+}
+
 function addCard(currentCard) {
     const titleRow = $("<div class='row title-row'></div>");
     const cardContent = $("#cardContent_" + currentCard.id);
 
     titleRow.append(`<div class='cell title-cell' colspan='${currentCard.grid.size.length + 1}'>${currentCard.title}</div>`);
-    $('#cardContainer' + currentCard.id).prepend(titleRow);
+    $('#cardContainer' + currentCard.id + ' > .card').prepend(titleRow);
 
     // Transpose rows and columns in the card grid
     for (let col = 0; col < currentCard.grid.size.length; col++) {
@@ -123,8 +147,8 @@ function addCard(currentCard) {
         }
     });
 }
-function addCardHtml(currentCard, empty) {
-    let cardHtml = "";
+function addCardHtml(currentCard, empty, random) {
+    let cardHtml = "<div class='card " + (empty ? 'empty' : '') + (random ? 'random' : '') + "'>";
     let titleRow = "<div class='row title-row'>";
     const cardContent = $("#cardContent_" + currentCard.id);
 
@@ -132,7 +156,7 @@ function addCardHtml(currentCard, empty) {
     //$('#cardContainer' + currentCard.id).prepend(titleRow);
     cardHtml += titleRow;
 
-    let cc = "<div class='card' id='cardContent_" + currentCard.id + "new'>";
+    let cc = "<div class='cardGrid' id='cardContent_" + currentCard.id + "new'>";
     // Transpose rows and columns in the card grid
     for (let col = 0; col < currentCard.grid.size.length; col++) {
         let column = "<div class='column'>";
@@ -140,17 +164,16 @@ function addCardHtml(currentCard, empty) {
         // Each column has rows
         Object.keys(currentCard.grid).forEach((key, index) => {
             const row = index + 1; // Increase data-row for every key, starting from 1
-            const cellContent = currentCard.grid[key][col];
             const isLabel = row === 1 || col === 0; // Check if it's a label cell
+            const cellContent = (random & !isLabel) ? (shouldShowRandomContent(row) ? currentCard.grid[key][col] : '') : currentCard.grid[key][col];
             const cellClass = isLabel ? 'label-cell' : 'input-cell';
-            const cell = `<div class='cell ${cellClass}' contenteditable='${!isLabel}' data-row='${row}' data-col='${col + 1 !== 0 ? col + 1 : ''}'>${empty && isLabel ? cellContent : ''}</div>`;
+            const cell = `<div class='cell ${cellClass}' contenteditable='${!isLabel}' data-row='${row}' data-col='${col + 1 !== 0 ? col + 1 : ''}'>${isLabel ? cellContent : empty ? '' : random ? cellContent : ''}</div>`;
             column += cell;
         });
         cc += column + '</div>';
         //cardContent.append(column);
     }
     cc += "</div>";
-    console.log(cardHtml + cc);
 
     // Add input validation for decimal values
     $(".input-cell").on("input", function () {
@@ -161,18 +184,48 @@ function addCardHtml(currentCard, empty) {
             $(this).text('');
         }
     });
-    return cardHtml + cc;
+    return cardHtml + cc + "</div>";
 }
 
+function shouldShowRandomContent(row) {
+    // Use Math.random() to decide randomly (adjust the threshold as needed)
+    let random = Math.random() > 0.5;
+    let r = Math.floor(Math.random() * 3) + 1;
+    console.log(random);
+    console.log(r);
+    return random ?? r   // Adjust the threshold as needed
+}
 
+function addNewBlankBoard(id) {
+    let card = $.grep(cardCollection, (c) => { return c.id === id })[0];
+    if (document.getElementsByClassName("empty")) {
+        $('#cardContainer' + card.id).children('.empty').remove();
+    }
+    setTimeout(() => {
+        $('#cardContainer' + card.id).append(addCardHtml(card, true, false));
+    }, 200);
+
+}
+function addNewRandomBoard(id) {
+    let card = $.grep(cardCollection, (c) => { return c.id === id })[0];
+    if (document.getElementsByClassName("random")) {
+        $('#cardContainer' + card.id).children('.random').remove();
+    }
+    setTimeout(() => {
+        $('#cardContainer' + card.id).append(addCardHtml(card, false, true));
+    }, 200);
+
+}
+
+var cardCollection = [];
 $(document).ready(function () {
-    const cardCollection = getCardCollection();
+    cardCollection = getCardCollection();
     // Initial card display
-    // cardCollection.forEach((card) => {
+    cardCollection.forEach((card) => {
 
-    //     createTabs(card);
-    // });
-    createTabs(cardCollection[0])
+        createTabs(card);
+    });
+    //createTabs(cardCollection[0])
 
     $('.container').tabs();
     $(".container").tabs("option", "active", 0);
