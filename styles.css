@@ -2,6 +2,7 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+    padding-bottom: 50px;
 }
 .ui-tabs .ui-tabs-panel {
 
