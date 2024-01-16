@@ -174,7 +174,7 @@ function addCardHtml(currentCard, empty, random) {
             const isLabel = row === 1 || col === 0; // Check if it's a label cell
             const cellContent = (random & !isLabel) ? (shouldShowRandomContent(row) ? currentCard.grid[key][col] : '') : currentCard.grid[key][col];
             const cellClass = isLabel ? 'label-cell' : 'input-cell';
-            const cell = `<div class='cell ${cellClass}' contenteditable='${!isLabel}' data-row='${row}' data-col='${col + 1 !== 0 ? col + 1 : ''}'>${isLabel ? cellContent : empty ? '' : random ? cellContent : ''}</div>`;
+            const cell = `<div class='cell ${cellClass}' contenteditable='${!isLabel}' data-row='${row}' data-col='${col + 1 !== 0 ? col + 1 : ''}' inputmode='numeric' pattern='[0-9]*' type='tel'>${isLabel ? cellContent : empty ? '' : random ? cellContent : ''}</div>`;
             column += cell;
         });
         cc += column + '</div>';
