@@ -92,7 +92,7 @@ function fillTab(currentCard) {
             <i id="icon" class="material-icons">visibility</i>
         </div>
         <button onclick="addNewBlankBoard('`+ currentCard.id + `')">Blank Board</button>
-        <button onclick="addNewRandomBoard('`+ currentCard.id + `')">Radom Board</button>
+        <button onclick="addNewRandomBoard('`+ currentCard.id + `')">Random Board</button>
     </div>`);
 
     addCard(currentCard);
