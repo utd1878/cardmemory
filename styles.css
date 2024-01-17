@@ -204,7 +204,7 @@ body {
     background-color: Red;
     color: White;
 }
-.cell[data-row="1"][data-col="4"]::after,
+/* .cell[data-row="1"][data-col="4"]::after,
 .cell[data-row="1"][data-col="2"]::after{
     content: '';
     position: relative;
@@ -227,7 +227,7 @@ body {
     border-top: solid 9px red;
     border-left: solid 22px transparent;
     border-right: solid 22px transparent;
-}
+} */
 
 .cell[data-row="2"][data-col="1"]  {
     background-color: Yellow;
