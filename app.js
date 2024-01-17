@@ -150,14 +150,20 @@ function addCard(currentCard) {
     });
 }
 function addCardHtml(currentCard, empty, random) {
-    let cardHtml = `<div class='card ` + (empty ? 'empty' : '') + (random ? 'random' : '') + `' data-id=` + currentCard.id + `>`;
+    let cardHtml = `<div class='card ` + (empty ? 'empty' : '') + (random ? 'random' : '') + `' data-id=` + currentCard.id + `>
+        <div class="buttonRow">
+            <span id="checkValues" class="check-values btn blue" onclick="validateInputCells('`+ currentCard.id + `','` + (empty ? 'empty' : 'random') + `')">
+                <i id="icon" class="material-icons">check</i>Check All
+            </span>
+            <span id="removeBoard" class="remove-button" onclick="removeCard('`+ currentCard.id + `','` + (empty ? 'empty' : 'random') + `')">
+                <i id="icon" class="material-icons">clear</i>
+            </span>
+        </div>
+    `;
     let titleRow = "<div class='row title-row'>";
     const cardContent = $("#cardContent_" + currentCard.id);
 
     titleRow = titleRow += `<div class='cell title-cell' colspan='${currentCard.grid.size.length + 1}'>${currentCard.title}
-        <span id="removeBoard" class="remove-button" onclick="removeCard('`+ currentCard.id + `','` + (empty ? 'empty' : 'random') + `')">
-            <i id="icon" class="material-icons">clear</i>
-        </span>
         </div>
         </div>`;
     //$('#cardContainer' + currentCard.id).prepend(titleRow);
@@ -193,7 +199,24 @@ function addCardHtml(currentCard, empty, random) {
     });
     return cardHtml + cc + "</div>";
 }
+function validateInputCells(card, board) {
+    $('#cardContainer' + card + ' > .' + board).find('.input-cell').each(function () {
+        const row = parseInt($(this).data('row'));
+        const col = parseInt($(this).data('col'));
+        const enteredValue = $(this).text();
+        const card = $.grep(cardCollection, (c) => {
+            return c.id === $(this).closest('.card').data('id');
+        })[0];
 
+        if (verifyInput(card, row, col, enteredValue)) {
+            // Correct value
+            $(this).removeClass('bad').addClass('good');
+        } else {
+            // Incorrect value
+            $(this).removeClass('good').addClass('bad');
+        }
+    });
+}
 function verifyInput(card, row, col, enteredValue) {
     // Check if the provided row and column are within the valid range
     if (row < 1 || row > card.grid.size.length || col < 1 || col > card.grid.size.length) {
@@ -262,19 +285,19 @@ $(document).ready(function () {
     $('.container').tabs();
     $(".container").tabs("option", "active", 0);
 
-    $(document).on('input', '.input-cell', function () {
-        const row = parseInt($(this).data('row'));
-        const col = parseInt($(this).data('col'));
-        const enteredValue = $(this).text();
+    // $(document).on('input', '.input-cell', function () {
+    //     const row = parseInt($(this).data('row'));
+    //     const col = parseInt($(this).data('col'));
+    //     const enteredValue = $(this).text();
 
-        // Get the card object based on your implementation
-        const card = $.grep(cardCollection, (c) => {
-            return c.id === $(this).closest('.card').data('id');
-        })[0]; // You need to implement a method to get the current card object
+    //     // Get the card object based on your implementation
+    //     const card = $.grep(cardCollection, (c) => {
+    //         return c.id === $(this).closest('.card').data('id');
+    //     })[0]; // You need to implement a method to get the current card object
 
-        // Call verifyInput method
-        $(this).removeClass('bad').removeClass('good').addClass(verifyInput(card, row, col, enteredValue) ? "good" : "bad");
-    });
+    //     // Call verifyInput method
+    //     $(this).removeClass('bad').removeClass('good').addClass(verifyInput(card, row, col, enteredValue) ? "good" : "bad");
+    // });
 
     // Event listener for the "Next Card" button
     // $("#nextButton").on("click", function () {

@@ -23,7 +23,12 @@ body {
     
     transition: background-color .3s;
   }
-  
+  .btn.blue{
+    background-color: rgb(51, 77, 194);  
+  }
+  .btn.blue:hover, .btn.blue:focus {
+    background-color: rgb(108, 124, 197);
+  }
   .btn:hover, .btn:focus {
     background-color: #27ae60;
   }
@@ -85,6 +90,7 @@ body {
     display: flex;
     justify-content: space-around;
     width: 100%;
+    padding-top:10px;
 }
 .show-hide-button {
     cursor: pointer;
@@ -117,7 +123,7 @@ body {
 }
 
 .row {
-    width: 320px;
+    width: 100%;
 }
 
 .cell {
@@ -125,10 +131,27 @@ body {
     padding: 10px;
     border: 2px solid #ccc;
 }
-
+.buttonRow{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: darkgray;
+}
+.buttonRow > span {
+    padding: 5px;
+    padding-right: 8px;
+    margin: 5px;
+}
+.check-values,
+.remove-button{
+    display: flex;
+    align-items: center;
+}
 .title-row {
     background-color: #ddd;
     font-weight: bold;
+    max-width: 338px;
+
 }
 
 .label-cell {
@@ -166,7 +189,7 @@ body {
 }
 
 .cell[data-col="1"]{
-    width:120px;
+    width:138px;
 }
 .cell[data-col="2"],
 .cell[data-col="3"],
@@ -180,6 +203,30 @@ body {
 .cell[data-row="1"][data-col="1"] {
     background-color: Red;
     color: White;
+}
+.cell[data-row="1"][data-col="4"]::after,
+.cell[data-row="1"][data-col="2"]::after{
+    content: '';
+    position: relative;
+    top: 37px;
+    margin-left: -33px;
+    width: 0;
+    height: 0;
+    border-top: solid 9px #add8e6;
+    border-left: solid 22px transparent;
+    border-right: solid 22px transparent;
+}
+.cell[data-row="1"][data-col="3"]::after,
+.cell[data-row="1"][data-col="5"]::after{
+    content: '';
+    position: relative;
+    top: 37px;
+    margin-left: -33px;
+    width: 0;
+    height: 0;
+    border-top: solid 9px red;
+    border-left: solid 22px transparent;
+    border-right: solid 22px transparent;
 }
 
 .cell[data-row="2"][data-col="1"]  {
