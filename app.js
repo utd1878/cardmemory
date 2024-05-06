@@ -350,10 +350,13 @@ function addCardHtmlTable(currentCard, empty, random) {
         if (cellContent && cellContent.style && cellContent.style.includes('merge')) {
           colSpan = `colspan='${currentCard.grid.size.length}'`; // Set colspan to number of columns
         }
+
         const cell = $(
           `<td class='cell ${cellClass}  ${cellContent?.style || ''}' ${colSpan || ''} contenteditable='${!isLabel}' data-row='${row}' data-col='${
             col + 1 !== 0 ? col + 1 : ''
-          }'>${cellContent.label ?? cellContent}</td>`
+          }' inputmode='decimal' pattern='[0-9]*' type='text'>${
+            isLabel ? cellContent.label ?? cellContent : empty ? '' : random ? cellContent.label ?? cellContent : ''
+          }</td>`
         );
 
         tableRow.append(cell);
