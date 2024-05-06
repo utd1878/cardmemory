@@ -36,9 +36,9 @@ function getCardCollection() {
     ['3.5', '5.0', '7.0', '9.0'],
     null,
     ['1.5', '2.5', '3.5', '4.5'],
-    'Regular',
-    'Top + bottom =',
-    'Extra'
+    { label: 'Regular' },
+    { label: 'Top + bottom =', style: 'merge' },
+    { label: 'Extra' }
   );
   cards.push(pizzacheeses);
 
@@ -49,9 +49,9 @@ function getCardCollection() {
     ['', '2.5', '3.5', '4.5'],
     null,
     ['', '3.0', '4.0', '5.5'],
-    'Pizza Cheese',
-    'GETS BOTH',
-    'Provolone'
+    { label: 'Pizza Cheese' },
+    { label: 'GETS BOTH', style: 'merge' },
+    { label: 'Provolone' }
   );
   cards.push(nycheeses);
 
@@ -184,9 +184,16 @@ function addCard(currentCard) {
       const cellContent = currentCard.grid[key][col] || '<span>&nbsp;</span>';
       const isLabel = row === 1 || col === 0 || !currentCard.grid[key][col]; // Check if it's a label cell
       const cellClass = isLabel ? 'label-cell' : 'input-cell';
-      const cell = `<div class='cell ${cellClass}' contenteditable='${!isLabel}' data-row='${row}' data-col='${
-        col + 1 !== 0 ? col + 1 : ''
-      }'>${cellContent}</div>`;
+      let colSpan = null;
+      if (cellContent && cellContent.style && cellContent.style.includes('merge')) {
+        colSpan = `colspan='${currentCard.grid.size.length}'`; // Set colspan to number of columns
+      }
+      const cell = `<div class='cell ${cellClass}  ${
+        cellContent?.style || ''
+      }' ${colSpan} contenteditable='${!isLabel}' data-row='${row}' data-col='${col + 1 !== 0 ? col + 1 : ''}'>${
+        cellContent.label ?? cellContent
+      }</div>`;
+
       column.append(cell);
     });
     cardContent.append(column);
@@ -253,11 +260,16 @@ function addCardHtml(currentCard, empty, random) {
         cellContent = '<span>&nbsp;</span>';
       }
       const cellClass = isLabel || !cellVal ? 'label-cell' : 'input-cell';
-      const cell = `<div class='cell ${cellClass}' contenteditable='${!isLabel}' data-row='${row}' data-col='${
+      const cell = `<div class='cell ${cellClass} ${cellContent?.style || ''}' contenteditable='${!isLabel}' data-row='${row}' data-col='${
         col + 1 !== 0 ? col + 1 : ''
-      }' inputmode='decimal' pattern='[0-9]*' type='text'>${isLabel ? cellContent : empty ? '' : random ? cellContent : ''}</div>`;
+      }' inputmode='decimal' pattern='[0-9]*' type='text'>${
+        isLabel ? cellContent.label ?? cellContent : empty ? '' : random ? cellContent.label ?? cellContent : ''
+      }</div>`;
+
       column += cell;
     });
+    // Add colspan if the cell has the 'merge' class
+
     cc += column + '</div>';
     //cardContent.append(column);
   }
@@ -273,6 +285,98 @@ function addCardHtml(currentCard, empty, random) {
     }
   });
   return cardHtml + cc + '</div>';
+}
+
+function addCardHtmlTable(currentCard, empty, random) {
+  let cardHtml =
+    `<div class='card ` +
+    (empty ? 'empty' : '') +
+    (random ? 'random' : '') +
+    `' data-id=` +
+    currentCard.id +
+    `>
+          <div class="buttonRow">
+              <span id="checkValues" class="check-values btn blue" onclick="validateInputCells('` +
+    currentCard.id +
+    `','` +
+    (empty ? 'empty' : 'random') +
+    `')">
+                  <i id="icon" class="material-icons">check</i>Check All
+              </span>
+              <span id="removeBoard" class="remove-button" onclick="removeCard('` +
+    currentCard.id +
+    `','` +
+    (empty ? 'empty' : 'random') +
+    `')">
+                  <i id="icon" class="material-icons">clear</i>
+              </span>
+          </div>
+      `;
+
+  const table = $('<table></table>');
+
+  // Create the table header row
+  const titleRow = $('<tr></tr>').addClass('row title-row');
+  const colspan = currentCard.grid.size.length; // Title cell spans all columns + 1
+  titleRow.append($(`<td class='cell title-cell' colspan='${colspan}'>${currentCard.title}</td>`));
+  table.append(titleRow);
+
+  // Generate data rows and cells based on grid size
+  for (let row = 1; row <= Object.keys(currentCard.grid).length; row++) {
+    const tableRow = $('<tr></tr>');
+    const firstCell = $(currentCard.grid[Object.keys(currentCard.grid)[row - 1]])[0]; // Get first cell DOM element
+
+    const hasMergeClass = firstCell['style'] === 'merge';
+
+    // Create data cells for each column
+    for (let col = 0; col < currentCard.grid.size.length; col++) {
+      if (!hasMergeClass || col === 0) {
+        // Skip cells if first cell has 'merge' and it's not the first column
+        const cellVal = currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col]; // Access cell value
+        const isLabel = row === 1 || col === 0 || !cellVal; // Check if it's a label cell
+        let cellContent = '';
+        if (cellVal) {
+          cellContent =
+            random & !isLabel
+              ? shouldShowRandomContent(row)
+                ? currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col]
+                : ''
+              : currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col];
+        } else {
+          cellContent = '<span>&nbsp;</span>';
+        }
+        const cellClass = isLabel ? 'label-cell' : 'input-cell';
+        let colSpan = null;
+        if (cellContent && cellContent.style && cellContent.style.includes('merge')) {
+          colSpan = `colspan='${currentCard.grid.size.length}'`; // Set colspan to number of columns
+        }
+        const cell = $(
+          `<td class='cell ${cellClass}  ${cellContent?.style || ''}' ${colSpan || ''} contenteditable='${!isLabel}' data-row='${row}' data-col='${
+            col + 1 !== 0 ? col + 1 : ''
+          }'>${cellContent.label ?? cellContent}</td>`
+        );
+
+        tableRow.append(cell);
+      }
+    }
+
+    table.append(tableRow);
+  }
+
+  // Add the table to the card content
+  //  $('#cardContent_' + currentCard.id).append(table);
+
+  // Add input validation for decimal values (unchanged)
+  $('.input-cell').on('input', function () {
+    const inputValue = $(this).text();
+    const isValidDecimal = /^\d*\.?\d*$/.test(inputValue);
+    if (!isValidDecimal) {
+      // Clear the input if it's not a valid decimal
+      $(this).text('');
+    }
+  });
+
+  return cardHtml + table.prop('outerHTML') + '</div>';
 }
 function validateInputCells(card, board) {
   $('#cardContainer' + card + ' > .' + board)
@@ -334,7 +438,7 @@ function addNewBlankBoard(id) {
       .remove();
   }
   setTimeout(() => {
-    $('#cardContainer' + card.id).append(addCardHtml(card, true, false));
+    $('#cardContainer' + card.id).append(addCardHtmlTable(card, true, false));
   }, 200);
 }
 function addNewRandomBoard(id) {
@@ -347,7 +451,7 @@ function addNewRandomBoard(id) {
       .remove();
   }
   setTimeout(() => {
-    $('#cardContainer' + card.id).append(addCardHtml(card, false, true));
+    $('#cardContainer' + card.id).append(addCardHtmlTable(card, false, true));
   }, 200);
 }
 

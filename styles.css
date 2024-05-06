@@ -1,208 +1,201 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 150px;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 150px;
 }
 
 .btn {
-    position: relative;
-  
-    display: block;
-    padding: 10px;
-  
-    overflow: hidden;
-  
-    border-width: 0;
-    outline: none;
-    border-radius: 2px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-    
-    background-color: #00b336;
-    color: #ecf0f1;
-    
-    transition: background-color .3s;
-  }
-  .btn.blue{
-    background-color: rgb(51, 77, 194);  
-  }
-  .btn.blue:hover, .btn.blue:focus {
-    background-color: rgb(108, 124, 197);
-  }
-  .btn:hover, .btn:focus {
-    background-color: #27ae60;
-  }
-  
-  .btn > * {
-    position: relative;
-  }
-  
-  .btn span {
-    display: block;
-    padding: 12px 24px;
-  }
-  
-  .btn:before {
-    content: "";
-    
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    
-    display: block;
-    width: 0;
-    padding-top: 0;
-      
-    border-radius: 100%;
-    
-    background-color: rgba(236, 240, 241, .3);
-    
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-  
-  .btn:active:before {
-    width: 120%;
-    padding-top: 120%;
-    
-    transition: width .2s ease-out, padding-top .2s ease-out;
-  }
+  position: relative;
+
+  display: block;
+  padding: 10px;
+
+  overflow: hidden;
+
+  border-width: 0;
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+  background-color: #00b336;
+  color: #ecf0f1;
+
+  transition: background-color 0.3s;
+}
+.btn.blue {
+  background-color: rgb(51, 77, 194);
+}
+.btn.blue:hover,
+.btn.blue:focus {
+  background-color: rgb(108, 124, 197);
+}
+.btn:hover,
+.btn:focus {
+  background-color: #27ae60;
+}
+
+.btn > * {
+  position: relative;
+}
+
+.btn span {
+  display: block;
+  padding: 12px 24px;
+}
+
+.btn:before {
+  content: '';
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  display: block;
+  width: 0;
+  padding-top: 0;
+
+  border-radius: 100%;
+
+  background-color: rgba(236, 240, 241, 0.3);
+
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+  width: 120%;
+  padding-top: 120%;
+
+  transition: width 0.2s ease-out, padding-top 0.2s ease-out;
+}
 
 #tabContainer {
-    white-space: nowrap;
-    overflow: auto;
-    width:100%;
+  white-space: nowrap;
+  overflow: auto;
+  width: 100%;
 }
 #tabContainer ul li {
-    display: inline-block;
-    float: none;
-    vertical-align: bottom;
-} 
-.ui-tabs .ui-tabs-panel {
-
-    padding: 1em 0.3em !important;
-
+  display: inline-block;
+  float: none;
+  vertical-align: bottom;
 }
-.buttons{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    padding-top:10px;
+.ui-tabs .ui-tabs-panel {
+  padding: 1em 0.3em !important;
+}
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 10px;
 }
 .show-hide-button {
-    cursor: pointer;
-    font-size: 24px; /* Adjust the font size as needed */
-    padding: 9px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    width: 320px;
+  cursor: pointer;
+  font-size: 24px; /* Adjust the font size as needed */
+  padding: 9px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 320px;
 }
 .container {
-    
-    margin-bottom:30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.card{
-    padding-top:15px;
-    text-align: center;
+.card {
+  padding-top: 15px;
+  text-align: center;
 }
-.cardContainer{
-    padding: 10px;
+.cardContainer {
+  padding: 10px;
 }
 
 .cardGrid {
-    display: flex;
-    /* justify-content: center; */
+  display: flex;
+  /* justify-content: center; */
 }
 
 .row {
-    width: 100%;
+  width: 100%;
 }
 
 .cell {
-    box-sizing: border-box;
-    padding: 10px;
-    border: 2px solid #ccc;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 2px solid #ccc;
 }
-.buttonRow{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    background-color: darkgray;
+.buttonRow {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  background-color: darkgray;
 }
 .buttonRow > span {
-    padding: 5px;
-    padding-right: 8px;
-    margin: 5px;
+  padding: 5px;
+  padding-right: 8px;
+  margin: 5px;
 }
 .check-values,
-.remove-button{
-    display: flex;
-    align-items: center;
+.remove-button {
+  display: flex;
+  align-items: center;
 }
 .title-row {
-    background-color: #ddd;
-    font-weight: bold;
-    max-width: 338px;
-
+  background-color: #ddd;
+  font-weight: bold;
+  max-width: 338px;
 }
 
 .label-cell {
-    background-color: #eee;
-    
+  background-color: #eee;
 }
-.title-cell{
-    display: flex;
-    justify-content: space-between;
+.title-cell {
 }
 
 .input-cell {
-    background-color: #fff;
-    
+  background-color: #fff;
 }
-.input-cell:focus{
-    outline:none;
+.input-cell:focus {
+  outline: none;
 }
 
 .input-cell.good {
-    /* border: 2px solid rgba(0, 128, 0, 0.5); */
-    outline: 8px solid rgba(0, 128, 0, 0.3);
-    outline-offset: -7px;
+  /* border: 2px solid rgba(0, 128, 0, 0.5); */
+  outline: 8px solid rgba(0, 128, 0, 0.3);
+  outline-offset: -7px;
 }
 .input-cell.bad {
-    /* border: 2px solid rgba(128, 0, 0, 0.5);   */
-    outline: 8px solid rgba(128, 0, 0, 0.3);
-    outline-offset: -7px;
+  /* border: 2px solid rgba(128, 0, 0, 0.5);   */
+  outline: 8px solid rgba(128, 0, 0, 0.3);
+  outline-offset: -7px;
 }
 
-.input-cell[data-row="1"], 
-.label-cell[data-col="1"] {
-    background-color: #ddd;
-    color: black;
+.input-cell[data-row='1'],
+.label-cell[data-col='1'] {
+  background-color: #ddd;
+  color: black;
 }
 
-.cell[data-col="1"]{
-    width:138px;
+.cell[data-col='1'] {
+  width: 138px;
 }
-.cell[data-col="2"],
-.cell[data-col="3"],
-.cell[data-col="4"],
-.cell[data-col="5"]{
-    width:50px;
+.cell[data-col='2'],
+.cell[data-col='3'],
+.cell[data-col='4'],
+.cell[data-col='5'] {
+  width: 50px;
 }
-
 
 /* Specify colors for each row and column */
-.cell[data-row="1"][data-col="1"] {
-    background-color: Red;
-    color: White;
+.cell[data-row='1'][data-col='1'] {
+  background-color: Red;
+  color: White;
 }
 /* .cell[data-row="1"][data-col="4"]::after,
 .cell[data-row="1"][data-col="2"]::after{
@@ -229,36 +222,36 @@ body {
     border-right: solid 22px transparent;
 } */
 
-.cell[data-row="2"][data-col="1"]  {
-    background-color: Yellow;
+.cell[data-row='2'][data-col='1'] {
+  background-color: Yellow;
 }
 
-.cell[data-row="3"][data-col="1"]{
-    background-color: Green;
+.cell[data-row='3'][data-col='1'] {
+  background-color: Green;
 }
 
-.cell[data-row="4"][data-col="1"] {
-    background-color: Blue;
-    color: white;
+.cell[data-row='4'][data-col='1'] {
+  background-color: Blue;
+  color: white;
 }
 
 /* Specific cell styling for Row 1, Column 2-5 */
-.cell[data-row="1"][data-col="2"] {
-    background-color: LightBlue;
-    color: White;
+.cell[data-row='1'][data-col='2'] {
+  background-color: LightBlue;
+  color: White;
 }
 
-.cell[data-row="1"][data-col="3"] {
-    background-color: Red;
-    color: White;
+.cell[data-row='1'][data-col='3'] {
+  background-color: Red;
+  color: White;
 }
 
-.cell[data-row="1"][data-col="4"] {
-    background-color: LightBlue;
-    color: White;
+.cell[data-row='1'][data-col='4'] {
+  background-color: LightBlue;
+  color: White;
 }
 
-.cell[data-row="1"][data-col="5"] {
-    background-color: Red;
-    color: White;
+.cell[data-row='1'][data-col='5'] {
+  background-color: Red;
+  color: White;
 }
