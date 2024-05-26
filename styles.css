@@ -117,6 +117,7 @@ body {
 .card {
   padding-top: 15px;
   text-align: center;
+  max-width: 415px;
 }
 .cardContainer {
   padding: 10px;

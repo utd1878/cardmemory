@@ -56,7 +56,7 @@ function createCardObjectV2(id, title, shortTitle, gridTitle, ...args) {
   };
 }
 
-function getCardCollection() {
+function getSpecialtyCardCollection() {
   const cards = [];
   const buffaloChicken = createCardObjectV2(
     'buffaloChicken',
@@ -76,103 +76,87 @@ function getCardCollection() {
   return cards;
 }
 // Card object template
-function getCardCollectionV1() {
+function getCardCollection() {
   const cards = [];
-  const buffaloChicken = createCardObjectV2(
-    'buffaloChicken',
-    'Buffalo Chicken',
-    'Buffalo Chicken',
-    'Ingredients',
-    { label: 'AMERICAN CHEESE', values: ['4', '6', '7', '9'], order: 1 },
-    { label: 'CHICKEN', values: ['2.0', '3.0', '4.0', '5.0'], order: 2 },
-    { label: 'ONION', values: ['1.0', '1.5', '2.0', '2.5'], order: 3 },
-    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 4 },
-    { label: 'CHEDDAR BLEND', values: ['1.0', '2.0', '2.5', '3.5'], order: 5 },
-    { label: 'POST BAKE', style: 'merge', order: 6 },
-    { label: 'HOT BUFFALO', values: ['1.0', '2.0', '2.5', '3.5'], order: 7 }
-  );
-  console.log(buffaloChicken);
-  cards.push(buffaloChicken);
-  const pizzacheeses = createCardObject(
+
+  const pizzacheeses = createCardObjectV2(
     'cheese',
     'Cheese',
     'Pizza Cheese',
-    ['3.5', '5.0', '7.0', '9.0'],
-    null,
-    ['1.5', '2.5', '3.5', '4.5'],
-    { label: 'Regular' },
-    { label: 'Add Top + Bottom when doing extra', style: 'merge' },
-    { label: 'Extra' }
+    'Size',
+    { label: 'Regular', values: ['3.5', '5.0', '7.0', '9.0'], order: 1 },
+    { label: 'Add Top + Bottom when doing extra', style: 'merge', order: 2 },
+    { label: 'Extra', values: ['1.5', '2.5', '3.5', '4.5'], order: 3 }
   );
   cards.push(pizzacheeses);
 
-  const nycheeses = createCardObject(
+  const nycheeses = createCardObjectV2(
     'nycheese',
     'NY Cheese',
     'NY Style Cheese',
-    ['', '2.5', '3.5', '4.5'],
-    ['', '3.0', '4.0', '5.5'],
-    null,
-    { label: 'Pizza Cheese' },
-    { label: 'Provolone' },
-    { label: 'BOTH cheeses get topped!', style: 'merge' }
+    'Size',
+    { label: 'Pizza Cheese', values: ['', '2.5', '3.5', '4.5'], order: 1 },
+    { label: 'Provolone', values: ['', '3.0', '4.0', '5.5'], order: 2 },
+    { label: 'BOTH cheeses get topped!', style: 'merge', order: 3 }
   );
   cards.push(nycheeses);
 
-  const pepperoniHamCard = createCardObject(
+  const pepperoniHamCard = createCardObjectV2(
     'pep',
     'Pepperoni & Ham',
     'Pep&Ham',
-    ['20', '30', '40', '54'],
-    ['16', '24', '32', '46'],
-    ['12', '18', '24', '38']
+    'Size',
+    { label: '1 Topping', values: ['20', '30', '40', '54'], order: 1 },
+    { label: '2-3 Topping', values: ['16', '24', '32', '46'], order: 2 },
+    { label: '4+ Topping', values: ['12', '18', '24', '38'], order: 3 }
   );
   cards.push(pepperoniHamCard);
 
   // Onion– Green Pepper– Banana Pepper -Jalapeno– Olives– Green Chiles card
-  const onionGreenPepperCard = createCardObject(
+  const onionGreenPepperCard = createCardObjectV2(
     'veg',
     'ONION–GREEN PEPPER–BANANA PEPPER-JALAPENO–OLIVES–GREEN CHILES',
     'Veg',
-    ['1.5', '2.0', '3.0', '4.0'],
-    ['1.0', '1.5', '2.0', '2.5'],
-    ['0.5', '1.0', '1.5', '2.0']
+    'Size',
+    { label: '1 Topping', values: ['1.5', '2.0', '3.0', '4.0'], order: 1 },
+    { label: '2-3 Toppings', values: ['1.0', '1.5', '2.0', '2.5'], order: 2 },
+    { label: '4+ Toppings', values: ['0.5', '1.0', '1.5', '2.0'], order: 3 }
   );
   cards.push(onionGreenPepperCard);
 
-  const suasageBeefChikCard = createCardObject(
+  const suasageBeefChikCard = createCardObjectV2(
     'meats',
     'Sausage-Beef-Chicken-Mushroom-Pineapple-Tomato',
     'Meats',
-    ['2.5', '3.5', '5.0', '6.5'],
-    ['1.5', '2.5', '3.5', '4.5'],
-    ['1.0', '1.5', '2.0', '2.5']
+    'Size',
+    { label: '1 Topping', values: ['2.5', '3.5', '5.0', '6.5'], order: 1 },
+    { label: '2-3 Toppings', values: ['1.5', '2.5', '3.5', '4.5'], order: 2 },
+    { label: '4+ Toppings', values: ['1.0', '1.5', '2.0', '2.5'], order: 3 }
   );
 
   cards.push(suasageBeefChikCard);
 
   // Spinach card
-  const spinachCard = createCardObject(
+  const spinachCard = createCardObjectV2(
     'spin',
     'Spinach',
     'Spinach',
-    ['1.5', '1.5', '2.0', '2.5'],
-    ['1.0', '1.0', '1.5', '2.0'],
-    null,
-    { label: '1 Topping' },
-    { label: '2-3 Topping' },
-    { label: '' }
+    'Size',
+    { label: '1 Topping', values: ['1.5', '1.5', '2.0', '2.5'], order: 1 },
+    { label: '2-3 Toppings', values: ['1.0', '1.0', '1.5', '2.0'], order: 2 },
+    { label: '', style: 'merge', order: 3 }
   );
   cards.push(spinachCard);
 
   // Philly card
-  const phillyCard = createCardObject(
+  const phillyCard = createCardObjectV2(
     'phil',
     'Philly Steak & Bacon',
     'Philly/Bacon',
-    ['2.0', '2.5', '3.5', '5.0'],
-    ['1.5', '2.0', '2.5', '3.5'],
-    ['1.0', '1.5', '2.0', '2.5']
+    'Size',
+    { label: '1 Topping', values: ['2.0', '2.5', '3.5', '5.0'], order: 1 },
+    { label: '2-3 Toppings', values: ['1.5', '2.0', '2.5', '3.5'], order: 2 },
+    { label: '4+ Toppings', values: ['1.0', '1.5', '2.0', '2.5'], order: 3 }
   );
   cards.push(phillyCard);
 
@@ -403,7 +387,7 @@ function addCardHtmlTableV1(currentCard, empty, random, isParent = false) {
         if (cellVal) {
           cellContent =
             random & !isLabel
-              ? shouldShowRandomContent(row)
+              ? shouldShowRandomContent()
                 ? currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col]
                 : ''
               : currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col];
@@ -510,7 +494,8 @@ function addCardHtmlTable(currentCard, empty, random, isParent = false) {
       let cellIndex = 1;
       for (const cellValue of rowData.cells) {
         const isLabel = isParent || !cellValue;
-        let cellContent = empty ? '' : random ? cellValue?.label ?? cellValue : cellValue?.label ?? cellValue;
+        //let cellContent = empty ? '' : random ? cellValue?.label ?? cellValue : cellValue?.label ?? cellValue;
+        let cellContent = random & !isLabel ? (shouldShowRandomContent() ? cellValue : '') : cellValue;
         const cellClass = isLabel ? 'label-cell' : 'input-cell';
 
         const colspan = currentColspan > 1 ? currentColspan - 1 : 1; // Update current colspan for next cells
@@ -519,7 +504,9 @@ function addCardHtmlTable(currentCard, empty, random, isParent = false) {
         const cell = $(
           `<td class='cell ${cellClass} ${rowClass}  ${colspan > 1 ? `colspan='${colspan}'` : ''}' contenteditable='${!isLabel}' data-row='${
             rowData.order + 1
-          }' data-col='${cellIndex}' data-input='${cellContent}' inputmode='decimal' pattern='[0-9]*' type='text'>${cellContent}</td>`
+          }' data-col='${cellIndex}' data-input='${cellContent}' inputmode='decimal' pattern='[0-9]*' type='text'>${
+            isLabel ? cellContent : empty ? '' : random ? cellValue : ''
+          }</td>`
         );
 
         tableRow.append(cell);
@@ -589,7 +576,7 @@ function verifyInput(card, row, col, enteredValue) {
   }
 }
 
-function shouldShowRandomContent(row) {
+function shouldShowRandomContent() {
   // Use Math.random() to decide randomly (adjust the threshold as needed)
   let random = Math.random() > 0.5;
   let r = Math.floor(Math.random() * 3) + 1;
