@@ -5,6 +5,10 @@ body {
   padding-bottom: 150px;
 }
 
+.app {
+  padding: 15px;
+}
+
 .btn {
   position: relative;
 

@@ -25,10 +25,74 @@ function createCardObject(
   };
 }
 
-// Card object template
+function createCardObjectV2(id, title, shortTitle, gridTitle, ...args) {
+  const rows = [];
+
+  // Loop through remaining arguments (except size)
+  for (const arg of args) {
+    // Check if arg is an object with required properties
+    if (typeof arg === 'object' && 'label' in arg && 'order' in arg) {
+      const row = {
+        label: arg.label,
+        cells: arg.values ? arg.values.slice() : [], // Copy values if present
+        style: arg.style || null,
+        order: arg.order,
+      };
+      rows.push(row);
+    }
+  }
+
+  // Sort rows based on 'order' property (ascending)
+  rows.sort((a, b) => a.order - b.order);
+
+  return {
+    id,
+    title,
+    shortTitle,
+    grid: {
+      header: [gridTitle, '10"', '12"', '14"', '16"'],
+      rows,
+    },
+  };
+}
+
 function getCardCollection() {
   const cards = [];
-
+  const buffaloChicken = createCardObjectV2(
+    'buffaloChicken',
+    'Buffalo Chicken',
+    'Buffalo Chicken',
+    'Ingredients',
+    { label: 'AMERICAN CHEESE', values: ['4', '6', '7', '9'], order: 1 },
+    { label: 'CHICKEN', values: ['2.0', '3.0', '4.0', '5.0'], order: 2 },
+    { label: 'ONION', values: ['1.0', '1.5', '2.0', '2.5'], order: 3 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 4 },
+    { label: 'CHEDDAR BLEND', values: ['1.0', '2.0', '2.5', '3.5'], order: 5 },
+    { label: 'POST BAKE', style: 'merge', order: 6 },
+    { label: 'HOT BUFFALO', values: ['1.0', '2.0', '2.5', '3.5'], order: 7 }
+  );
+  console.log(buffaloChicken);
+  cards.push(buffaloChicken);
+  return cards;
+}
+// Card object template
+function getCardCollectionV1() {
+  const cards = [];
+  const buffaloChicken = createCardObjectV2(
+    'buffaloChicken',
+    'Buffalo Chicken',
+    'Buffalo Chicken',
+    'Ingredients',
+    { label: 'AMERICAN CHEESE', values: ['4', '6', '7', '9'], order: 1 },
+    { label: 'CHICKEN', values: ['2.0', '3.0', '4.0', '5.0'], order: 2 },
+    { label: 'ONION', values: ['1.0', '1.5', '2.0', '2.5'], order: 3 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 4 },
+    { label: 'CHEDDAR BLEND', values: ['1.0', '2.0', '2.5', '3.5'], order: 5 },
+    { label: 'POST BAKE', style: 'merge', order: 6 },
+    { label: 'HOT BUFFALO', values: ['1.0', '2.0', '2.5', '3.5'], order: 7 }
+  );
+  console.log(buffaloChicken);
+  cards.push(buffaloChicken);
   const pizzacheeses = createCardObject(
     'cheese',
     'Cheese',
@@ -291,7 +355,7 @@ function addCard(currentCard) {
 //   return cardHtml + cc + '</div>';
 // }
 
-function addCardHtmlTable(currentCard, empty, random, isParent = false) {
+function addCardHtmlTableV1(currentCard, empty, random, isParent = false) {
   let cardHtml = `<div class='card ` + (empty ? 'empty' : '') + (random ? 'random' : '') + `' data-id=` + currentCard.id + `>`;
   if (!isParent) {
     cardHtml =
@@ -327,7 +391,7 @@ function addCardHtmlTable(currentCard, empty, random, isParent = false) {
     const tableRow = $('<tr></tr>');
     const firstCell = $(currentCard.grid[Object.keys(currentCard.grid)[row - 1]])[0]; // Get first cell DOM element
 
-    const hasMergeClass = firstCell['style'] === 'merge';
+    const hasMergeClass = firstCell && firstCell['style'] === 'merge';
 
     // Create data cells for each column
     for (let col = 0; col < currentCard.grid.size.length; col++) {
@@ -358,6 +422,96 @@ function addCardHtmlTable(currentCard, empty, random, isParent = false) {
           }' inputmode='decimal' pattern='[0-9]*' type='text'>${
             isLabel ? cellContent.label ?? cellContent : empty ? '' : random ? cellContent.label ?? cellContent : ''
           }</td>`
+        );
+
+        tableRow.append(cell);
+      }
+    }
+
+    table.append(tableRow);
+  }
+
+  // Add the table to the card content
+  //  $('#cardContent_' + currentCard.id).append(table);
+
+  // Add input validation for decimal values (unchanged)
+  $('.input-cell').on('input', function () {
+    const inputValue = $(this).text();
+    const isValidDecimal = /^\d*\.?\d*$/.test(inputValue);
+    if (!isValidDecimal) {
+      // Clear the input if it's not a valid decimal
+      $(this).text('');
+    }
+  });
+
+  return cardHtml + table.prop('outerHTML') + '</div>';
+}
+
+function addCardHtmlTable(currentCard, empty, random, isParent = false) {
+  let cardHtml = `<div class='card ` + (empty ? 'empty' : '') + (random ? 'random' : '') + `' data-id=` + currentCard.id + `>`;
+  if (!isParent) {
+    cardHtml =
+      cardHtml +
+      `<div class="buttonRow">
+              <span id="checkValues" class="check-values btn blue" onclick="validateInputCells('` +
+      currentCard.id +
+      `','` +
+      (empty ? 'empty' : 'random') +
+      `')">
+                  <i id="icon" class="material-icons">check</i>Check All
+              </span>
+              <span id="removeBoard" class="remove-button" onclick="removeCard('` +
+      currentCard.id +
+      `','` +
+      (empty ? 'empty' : 'random') +
+      `')">
+                  <i id="icon" class="material-icons">clear</i>
+              </span>
+          </div>`;
+  }
+
+  const table = $('<table></table>');
+
+  // Create the table header row
+  const titleRow = $('<tr></tr>').addClass('row title-row');
+  const colspan = currentCard.grid.header.length; // Title cell spans all columns + 1
+  titleRow.append($(`<td class='cell title-cell' colspan='${colspan}'>${currentCard.title}</td>`));
+  table.append(titleRow);
+
+  if (currentCard.grid.header) {
+    const headerValueRow = $('<tr></tr>');
+    for (const headerValue of currentCard.grid.header) {
+      headerValueRow.append($(`<th>${headerValue}</th>`));
+    }
+    table.append(headerValueRow);
+  }
+
+  for (const rowData of currentCard.grid.rows) {
+    const tableRow = $('<tr></tr>');
+
+    let hasMerge = rowData.style === 'merge'; // Flag to track merge row
+    let currentColspan = hasMerge ? currentCard.grid.header.length : 1; // Set colspan for merged row
+
+    // Add label cell
+    tableRow.append($(`<td class='cell label-cell' colspan='${currentColspan}'>${rowData.label}</td>`));
+
+    // Check if the row has 'merge' style even if no cell values
+    if (!hasMerge && rowData.cells.length > 0) {
+      // Add data cells for each value in the row (unchanged logic)
+      for (const cellValue of rowData.cells) {
+        const isLabel = isParent || !cellValue;
+        let cellContent = empty ? '' : random ? cellValue?.label ?? cellValue : cellValue?.label ?? cellValue;
+        const cellClass = isLabel ? 'label-cell' : 'input-cell';
+
+        const colspan = currentColspan > 1 ? currentColspan - 1 : 1; // Update current colspan for next cells
+        currentColspan = colspan; // Update current colspan for next iteration
+
+        const cell = $(
+          `<td class='cell ${cellClass}  ${
+            colspan > 1 ? `colspan='${colspan}'` : ''
+          }' contenteditable='<span class="math-inline">\{\!isLabel\}' data\-row\='</span>{
+              rowData.order
+            }' data-col='' inputmode='decimal' pattern='[0-9]*' type='text'>${cellContent}</td>`
         );
 
         tableRow.append(cell);
@@ -471,6 +625,8 @@ $(document).ready(function () {
     createTabs(card);
   });
   //createTabs(cardCollection[0])
+  $('.pages').tabs();
+  $('.pages').tabs('option', 'active', 0);
 
   $('.container').tabs();
   $('.container').tabs('option', 'active', 0);
