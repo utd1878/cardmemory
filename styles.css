@@ -1,3 +1,5 @@
+@import url('grid-style.css');
+
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -181,27 +183,11 @@ body {
   outline-offset: -7px;
 }
 
-.input-cell[data-row='1'],
-.label-cell[data-col='1'] {
+.input-cell[data-row='1'] {
   background-color: #ddd;
   color: black;
 }
 
-.cell[data-col='1'] {
-  width: 138px;
-}
-.cell[data-col='2'],
-.cell[data-col='3'],
-.cell[data-col='4'],
-.cell[data-col='5'] {
-  width: 50px;
-}
-
-/* Specify colors for each row and column */
-.cell[data-row='1'][data-col='1'] {
-  background-color: Red;
-  color: White;
-}
 /* .cell[data-row="1"][data-col="4"]::after,
 .cell[data-row="1"][data-col="2"]::after{
     content: '';
@@ -226,37 +212,3 @@ body {
     border-left: solid 22px transparent;
     border-right: solid 22px transparent;
 } */
-
-.cell[data-row='2'][data-col='1'] {
-  background-color: Yellow;
-}
-
-.cell[data-row='3'][data-col='1'] {
-  background-color: Green;
-}
-
-.cell[data-row='4'][data-col='1'] {
-  background-color: Blue;
-  color: white;
-}
-
-/* Specific cell styling for Row 1, Column 2-5 */
-.cell[data-row='1'][data-col='2'] {
-  background-color: LightBlue;
-  color: White;
-}
-
-.cell[data-row='1'][data-col='3'] {
-  background-color: Red;
-  color: White;
-}
-
-.cell[data-row='1'][data-col='4'] {
-  background-color: LightBlue;
-  color: White;
-}
-
-.cell[data-row='1'][data-col='5'] {
-  background-color: Red;
-  color: White;
-}

@@ -479,9 +479,11 @@ function addCardHtmlTable(currentCard, empty, random, isParent = false) {
   table.append(titleRow);
 
   if (currentCard.grid.header) {
-    const headerValueRow = $('<tr></tr>');
+    const headerValueRow = $('<tr></tr>').addClass('row');
     for (const headerValue of currentCard.grid.header) {
-      headerValueRow.append($(`<th>${headerValue}</th>`));
+      headerValueRow.append(
+        $(`<th class='cell header-cell' data-col='${currentCard.grid.header.indexOf(headerValue)}' data-row='0'>${headerValue}</th>`)
+      );
     }
     table.append(headerValueRow);
   }
@@ -491,13 +493,21 @@ function addCardHtmlTable(currentCard, empty, random, isParent = false) {
 
     let hasMerge = rowData.style === 'merge'; // Flag to track merge row
     let currentColspan = hasMerge ? currentCard.grid.header.length : 1; // Set colspan for merged row
-
+    const rowClass = rowData.order % 2 == 0 ? 'white' : 'blue';
     // Add label cell
-    tableRow.append($(`<td class='cell label-cell' colspan='${currentColspan}'>${rowData.label}</td>`));
+    tableRow.append(
+      $(
+        `<td class='cell label-cell ${rowClass} ${hasMerge ? 'merged-cell' : ''}' colspan='${currentColspan}' data-col='0' data-row='${
+          rowData.order + 1
+        }'>${rowData.label}</td>`
+      )
+    );
 
     // Check if the row has 'merge' style even if no cell values
+
     if (!hasMerge && rowData.cells.length > 0) {
       // Add data cells for each value in the row (unchanged logic)
+      let cellIndex = 1;
       for (const cellValue of rowData.cells) {
         const isLabel = isParent || !cellValue;
         let cellContent = empty ? '' : random ? cellValue?.label ?? cellValue : cellValue?.label ?? cellValue;
@@ -507,14 +517,14 @@ function addCardHtmlTable(currentCard, empty, random, isParent = false) {
         currentColspan = colspan; // Update current colspan for next iteration
 
         const cell = $(
-          `<td class='cell ${cellClass}  ${
-            colspan > 1 ? `colspan='${colspan}'` : ''
-          }' contenteditable='<span class="math-inline">\{\!isLabel\}' data\-row\='</span>{
-              rowData.order
-            }' data-col='' inputmode='decimal' pattern='[0-9]*' type='text'>${cellContent}</td>`
+          `<td class='cell ${cellClass} ${rowClass}  ${colspan > 1 ? `colspan='${colspan}'` : ''}' contenteditable='${!isLabel}' data-row='${
+            rowData.order + 1
+          }' data-col='${cellIndex}' data-input='${cellContent}' inputmode='decimal' pattern='[0-9]*' type='text'>${cellContent}</td>`
         );
 
         tableRow.append(cell);
+
+        cellIndex++;
       }
     }
 
