@@ -37,7 +37,7 @@ function getCardCollection() {
     null,
     ['1.5', '2.5', '3.5', '4.5'],
     { label: 'Regular' },
-    { label: 'Top + bottom =', style: 'merge' },
+    { label: 'Add Top + Bottom when doing extra', style: 'merge' },
     { label: 'Extra' }
   );
   cards.push(pizzacheeses);
@@ -47,11 +47,11 @@ function getCardCollection() {
     'NY Cheese',
     'NY Style Cheese',
     ['', '2.5', '3.5', '4.5'],
-    null,
     ['', '3.0', '4.0', '5.5'],
+    null,
     { label: 'Pizza Cheese' },
-    { label: 'GETS BOTH', style: 'merge' },
-    { label: 'Provolone' }
+    { label: 'Provolone' },
+    { label: 'BOTH cheeses get topped!', style: 'merge' }
   );
   cards.push(nycheeses);
 
@@ -94,7 +94,10 @@ function getCardCollection() {
     'Spinach',
     ['1.5', '1.5', '2.0', '2.5'],
     ['1.0', '1.0', '1.5', '2.0'],
-    ['', '', '', '', '']
+    null,
+    { label: '1 Topping' },
+    { label: '2-3 Topping' },
+    { label: '' }
   );
   cards.push(spinachCard);
 
@@ -145,7 +148,8 @@ function fillTab(currentCard) {
     </div>`
   );
 
-  addCard(currentCard);
+  //addCard(currentCard);
+  $('#cardContent_' + currentCard.id).append(addCardHtmlTable(currentCard, false, false, true));
 }
 
 function toggleMainCard(id) {
@@ -209,109 +213,106 @@ function addCard(currentCard) {
     }
   });
 }
-function addCardHtml(currentCard, empty, random) {
-  let cardHtml =
-    `<div class='card ` +
-    (empty ? 'empty' : '') +
-    (random ? 'random' : '') +
-    `' data-id=` +
-    currentCard.id +
-    `>
-        <div class="buttonRow">
+// function addCardHtml(currentCard, empty, random) {
+//   let cardHtml =
+//     `<div class='card ` +
+//     (empty ? 'empty' : '') +
+//     (random ? 'random' : '') +
+//     `' data-id=` +
+//     currentCard.id +
+//     `>
+//         <div class="buttonRow">
+//             <span id="checkValues" class="check-values btn blue" onclick="validateInputCells('` +
+//     currentCard.id +
+//     `','` +
+//     (empty ? 'empty' : 'random') +
+//     `')">
+//                 <i id="icon" class="material-icons">check</i>Check All
+//             </span>
+//             <span id="removeBoard" class="remove-button" onclick="removeCard('` +
+//     currentCard.id +
+//     `','` +
+//     (empty ? 'empty' : 'random') +
+//     `')">
+//                 <i id="icon" class="material-icons">clear</i>
+//             </span>
+//         </div>
+//     `;
+//   let titleRow = "<div class='row title-row'>";
+//   const cardContent = $('#cardContent_' + currentCard.id);
+
+//   titleRow = titleRow += `<div class='cell title-cell' colspan='${currentCard.grid.size.length + 1}'>${currentCard.title}
+//         </div>
+//         </div>`;
+//   //$('#cardContainer' + currentCard.id).prepend(titleRow);
+//   cardHtml += titleRow;
+
+//   let cc = "<div class='cardGrid' id='cardContent_" + currentCard.id + "new'>";
+//   // Transpose rows and columns in the card grid
+//   for (let col = 0; col < currentCard.grid.size.length; col++) {
+//     let column = "<div class='column'>";
+
+//     // Each column has rows
+//     Object.keys(currentCard.grid).forEach((key, index) => {
+//       const row = index + 1; // Increase data-row for every key, starting from 1
+//       const cellVal = currentCard.grid[key][col];
+//       const isLabel = row === 1 || col === 0 || !cellVal; // Check if it's a label cell
+//       let cellContent = '';
+//       if (cellVal) {
+//         cellContent = random & !isLabel ? (shouldShowRandomContent(row) ? currentCard.grid[key][col] : '') : currentCard.grid[key][col];
+//       } else {
+//         cellContent = '<span>&nbsp;</span>';
+//       }
+//       const cellClass = isLabel || !cellVal ? 'label-cell' : 'input-cell';
+//       const cell = `<div class='cell ${cellClass} ${cellContent?.style || ''}' contenteditable='${!isLabel}' data-row='${row}' data-col='${
+//         col + 1 !== 0 ? col + 1 : ''
+//       }' inputmode='decimal' pattern='[0-9]*' type='text'>${
+//         isLabel ? cellContent.label ?? cellContent : empty ? '' : random ? cellContent.label ?? cellContent : ''
+//       }</div>`;
+
+//       column += cell;
+//     });
+//     // Add colspan if the cell has the 'merge' class
+
+//     cc += column + '</div>';
+//     //cardContent.append(column);
+//   }
+//   cc += '</div>';
+
+//   // Add input validation for decimal values
+//   $('.input-cell').on('input', function () {
+//     const inputValue = $(this).text();
+//     const isValidDecimal = /^\d*\.?\d*$/.test(inputValue);
+//     if (!isValidDecimal) {
+//       // Clear the input if it's not a valid decimal
+//       $(this).text('');
+//     }
+//   });
+//   return cardHtml + cc + '</div>';
+// }
+
+function addCardHtmlTable(currentCard, empty, random, isParent = false) {
+  let cardHtml = `<div class='card ` + (empty ? 'empty' : '') + (random ? 'random' : '') + `' data-id=` + currentCard.id + `>`;
+  if (!isParent) {
+    cardHtml =
+      cardHtml +
+      `<div class="buttonRow">
             <span id="checkValues" class="check-values btn blue" onclick="validateInputCells('` +
-    currentCard.id +
-    `','` +
-    (empty ? 'empty' : 'random') +
-    `')">
+      currentCard.id +
+      `','` +
+      (empty ? 'empty' : 'random') +
+      `')">
                 <i id="icon" class="material-icons">check</i>Check All
             </span>
             <span id="removeBoard" class="remove-button" onclick="removeCard('` +
-    currentCard.id +
-    `','` +
-    (empty ? 'empty' : 'random') +
-    `')">
+      currentCard.id +
+      `','` +
+      (empty ? 'empty' : 'random') +
+      `')">
                 <i id="icon" class="material-icons">clear</i>
             </span>
-        </div>
-    `;
-  let titleRow = "<div class='row title-row'>";
-  const cardContent = $('#cardContent_' + currentCard.id);
-
-  titleRow = titleRow += `<div class='cell title-cell' colspan='${currentCard.grid.size.length + 1}'>${currentCard.title}
-        </div>
         </div>`;
-  //$('#cardContainer' + currentCard.id).prepend(titleRow);
-  cardHtml += titleRow;
-
-  let cc = "<div class='cardGrid' id='cardContent_" + currentCard.id + "new'>";
-  // Transpose rows and columns in the card grid
-  for (let col = 0; col < currentCard.grid.size.length; col++) {
-    let column = "<div class='column'>";
-
-    // Each column has rows
-    Object.keys(currentCard.grid).forEach((key, index) => {
-      const row = index + 1; // Increase data-row for every key, starting from 1
-      const cellVal = currentCard.grid[key][col];
-      const isLabel = row === 1 || col === 0 || !cellVal; // Check if it's a label cell
-      let cellContent = '';
-      if (cellVal) {
-        cellContent = random & !isLabel ? (shouldShowRandomContent(row) ? currentCard.grid[key][col] : '') : currentCard.grid[key][col];
-      } else {
-        cellContent = '<span>&nbsp;</span>';
-      }
-      const cellClass = isLabel || !cellVal ? 'label-cell' : 'input-cell';
-      const cell = `<div class='cell ${cellClass} ${cellContent?.style || ''}' contenteditable='${!isLabel}' data-row='${row}' data-col='${
-        col + 1 !== 0 ? col + 1 : ''
-      }' inputmode='decimal' pattern='[0-9]*' type='text'>${
-        isLabel ? cellContent.label ?? cellContent : empty ? '' : random ? cellContent.label ?? cellContent : ''
-      }</div>`;
-
-      column += cell;
-    });
-    // Add colspan if the cell has the 'merge' class
-
-    cc += column + '</div>';
-    //cardContent.append(column);
   }
-  cc += '</div>';
-
-  // Add input validation for decimal values
-  $('.input-cell').on('input', function () {
-    const inputValue = $(this).text();
-    const isValidDecimal = /^\d*\.?\d*$/.test(inputValue);
-    if (!isValidDecimal) {
-      // Clear the input if it's not a valid decimal
-      $(this).text('');
-    }
-  });
-  return cardHtml + cc + '</div>';
-}
-
-function addCardHtmlTable(currentCard, empty, random) {
-  let cardHtml =
-    `<div class='card ` +
-    (empty ? 'empty' : '') +
-    (random ? 'random' : '') +
-    `' data-id=` +
-    currentCard.id +
-    `>
-          <div class="buttonRow">
-              <span id="checkValues" class="check-values btn blue" onclick="validateInputCells('` +
-    currentCard.id +
-    `','` +
-    (empty ? 'empty' : 'random') +
-    `')">
-                  <i id="icon" class="material-icons">check</i>Check All
-              </span>
-              <span id="removeBoard" class="remove-button" onclick="removeCard('` +
-    currentCard.id +
-    `','` +
-    (empty ? 'empty' : 'random') +
-    `')">
-                  <i id="icon" class="material-icons">clear</i>
-              </span>
-          </div>
-      `;
 
   const table = $('<table></table>');
 
@@ -333,7 +334,7 @@ function addCardHtmlTable(currentCard, empty, random) {
       if (!hasMergeClass || col === 0) {
         // Skip cells if first cell has 'merge' and it's not the first column
         const cellVal = currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col]; // Access cell value
-        const isLabel = row === 1 || col === 0 || !cellVal; // Check if it's a label cell
+        const isLabel = row === 1 || col === 0 || !cellVal || isParent; // Check if it's a label cell
         let cellContent = '';
         if (cellVal) {
           cellContent =

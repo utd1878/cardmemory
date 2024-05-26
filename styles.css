@@ -145,6 +145,7 @@ body {
 .remove-button {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .title-row {
   background-color: #ddd;
