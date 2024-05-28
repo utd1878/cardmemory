@@ -71,8 +71,184 @@ function getSpecialtyCardCollection() {
     { label: 'POST BAKE', style: 'merge', order: 6 },
     { label: 'HOT BUFFALO', values: ['1.0', '2.0', '2.5', '3.5'], order: 7 }
   );
-  console.log(buffaloChicken);
   cards.push(buffaloChicken);
+
+  const caliChickenBaconRanch = createCardObjectV2(
+    'caliChickenBaconRanch',
+    'Cali Chicken Bacon Ranch',
+    'Cali Chicken Bacon Ranch',
+    'Ingredients',
+    { label: 'RANCH', values: ['1.5', '3.0', '4.0', '5.0'], order: 1 },
+    { label: 'PIZZA CHEESE', values: ['1.5', '2.5', '3.5', '4.5'], order: 2 },
+    { label: 'CHICKEN', values: ['2.0', '3.0', '4.0', '5.0'], order: 3 },
+    { label: 'BACON', values: ['1.5', '2.0', '2.5', '3.5'], order: 4 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 5 },
+    { label: 'TOMATO', values: ['1.5', '2.5', '3.5', '4.5'], order: 6 }
+  );
+
+  cards.push(caliChickenBaconRanch);
+
+  const deluxe = createCardObjectV2(
+    'deluxe',
+    'Deluxe',
+    'Deluxe',
+    'Ingredients',
+    { label: 'PIZZA SAUCE', values: ['3.0', '4.2', '6.0', '8.0'], order: 1 },
+    { label: 'PIZZA CHEESE', values: ['1.5', '2.5', '3.5', '4.5'], order: 2 },
+    { label: 'PEPPERONI', values: ['12', '18', '24', '38'], order: 3 },
+    { label: 'ONION', values: ['0.5', '1.0', '1.5', '2.0'], order: 4 },
+    { label: 'GREEN PEPPER', values: ['0.5', '1.0', '1.5', '2.0'], order: 5 },
+    { label: 'MUSHROOM', values: ['1.0', '1.5', '2.0', '2.5'], order: 6 },
+    { label: 'SAUSAGE', values: ['1.0', '1.5', '2.0', '2.5'], order: 7 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 8 }
+  );
+
+  cards.push(deluxe);
+
+  const extravaganza = createCardObjectV2(
+    'extravaganza',
+    'Extravaganza',
+    'Extravaganza',
+    'Ingredients',
+    { label: 'PIZZA SAUCE', values: ['3.0', '4.2', '6.0', '8.0'], order: 1 },
+    { label: 'PIZZA CHEESE', values: ['1.5', '2.5', '3.5', '4.5'], order: 2 },
+    { label: 'PEPPERONI', values: ['12', '18', '24', '38'], order: 3 },
+    { label: 'HAM', values: ['12', '18', '24', '38'], order: 4 },
+    { label: 'ONION', values: ['0.5', '1.0', '1.5', '2.0'], order: 5 },
+    { label: 'GREEN PEPPER', values: ['0.5', '1.0', '1.5', '2.0'], order: 6 },
+    { label: 'MUSHROOM', values: ['1.0', '1.5', '2.0', '2.5'], order: 7 },
+    { label: 'BLACK OLIVE', values: ['0.5', '1.0', '1.5', '2.0'], order: 8 },
+    { label: 'SAUSAGE', values: ['1.0', '1.5', '2.0', '2.5'], order: 9 },
+    { label: 'BEEF', values: ['1.0', '1.5', '2.0', '2.5'], order: 10 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 11 }
+  );
+
+  cards.push(extravaganza);
+  const honoluluHawaiian = createCardObjectV2(
+    'honoluluHawaiian',
+    'Honolulu Hawaiian',
+    'Honolulu Hawaiian',
+    'Ingredients',
+    { label: 'PIZZA SAUCE', values: ['3.0', '4.2', '6.0', '8.0'], order: 1 },
+    { label: 'PIZZA CHEESE', values: ['1.5', '2.5', '3.5', '4.5'], order: 2 },
+    { label: 'HAM', values: ['12', '18', '24', '38'], order: 3 },
+    { label: 'BACON', values: ['1.0', '1.5', '2.0', '2.5'], order: 4 },
+    { label: 'PINEAPPLE', values: ['1.0', '1.5', '2.0', '2.5'], order: 5 },
+    { label: 'GREEN PEPPER', values: ['0.5', '1.0', '1.5', '2.0'], order: 6 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 7 }
+  );
+
+  cards.push(honoluluHawaiian);
+
+  const meatzza = createCardObjectV2(
+    'meatzza',
+    'Meatzza',
+    'Meatzza',
+    'Ingredients',
+    { label: 'PIZZA SAUCE', values: ['3.0', '4.2', '6.0', '8.0'], order: 1 },
+    { label: 'PIZZA CHEESE', values: ['1.5', '2.5', '3.5', '4.5'], order: 2 },
+    { label: 'PEPPERONI', values: ['12', '18', '24', '38'], order: 3 },
+    { label: 'HAM', values: ['12', '18', '24', '38'], order: 4 },
+    { label: 'SAUSAGE', values: ['1.0', '1.5', '2.0', '2.5'], order: 5 },
+    { label: 'BEEF', values: ['1.0', '1.5', '2.0', '2.5'], order: 6 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 7 }
+  );
+  cards.push(meatzza);
+
+  const memphisBBQChicken = createCardObjectV2(
+    'memphisBBQChicken',
+    'Memphis BBQ Chicken',
+    'Memphis BBQ Chicken',
+    'Ingredients',
+    { label: 'HONEY BBQ SAUCE', values: ['1.5', '2.5', '3.5', '4.5'], order: 1 },
+    { label: 'PIZZA CHEESE', values: ['1.5', '2.5', '3.5', '4.5'], order: 2 },
+    { label: 'CHICKEN', values: ['2.0', '3.0', '4.0', '5.0'], order: 3 },
+    { label: 'ONION', values: ['1.0', '1.5', '2.0', '2.5'], order: 4 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 5 },
+    { label: 'CHEDDAR BLEND', values: ['1.0', '2.0', '2.5', '3.5'], order: 6 }
+  );
+
+  cards.push(memphisBBQChicken);
+
+  const pacificVeggie = createCardObjectV2(
+    'pacificVeggie',
+    'Pacific Veggie',
+    'Pacific Veggie',
+    'Ingredients',
+    { label: 'PIZZA SAUCE', values: ['1.5', '3.0', '4.0', '4.5'], order: 1 },
+    { label: 'PIZZA CHEESE', values: ['1.5', '2.5', '3.5', '4.5'], order: 2 },
+    { label: 'SPINACH', values: ['1.0', '1.0', '1.5', '2.0'], order: 3 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 4 },
+    { label: 'FETA', values: ['1.0', '1.5', '2.0', '2.5'], order: 5 },
+    { label: 'ONION', values: ['0.5', '1.0', '1.5', '2.0'], order: 6 },
+    { label: 'MUSHROOM', values: ['1.0', '1.5', '2.0', '2.5'], order: 7 },
+    { label: 'BLACK OLIVE', values: ['0.2', '0.5', '0.7', '1.0'], order: 8 },
+    { label: 'TOMATO', values: ['0.5', '1.0', '1.5', '2.0'], order: 9 },
+    { label: 'GARLIC HERB SHAKE', values: ['.02', '.03', '.04', '.05'], order: 10 }
+  );
+  cards.push(pacificVeggie);
+
+  const phillyCheeseSteak = createCardObjectV2(
+    'phillyCheeseSteak',
+    'Philly Cheese Steak',
+    'Philly Cheese Steak',
+    'Ingredients',
+    { label: 'AMERICAN CHEESE', values: ['4', '6', '7', '9'], order: 1 },
+    { label: 'PHILLY STEAK', values: ['2.0', '3.0', '4.0', '5.0'], order: 2 },
+    { label: 'ONION', values: ['0.5', '1.0', '1.5', '2.0'], order: 3 },
+    { label: 'GREEN PEPPER', values: ['0.5', '1.0', '1.5', '2.0'], order: 4 },
+    { label: 'MUSHROOM', values: ['1.0', '1.5', '2.0', '2.5'], order: 5 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 6 }
+  );
+
+  cards.push(phillyCheeseSteak);
+
+  const spinachFeta = createCardObjectV2(
+    'spinachFeta',
+    'Spinach Feta',
+    'Spinach Feta',
+    'Ingredients',
+    { label: 'PIZZA CHEESE', values: ['1.5', '2.5', '3.5', '4.5'], order: 1 },
+    { label: 'SPINACH', values: ['1.0', '1.0', '1.5', '2.0'], order: 2 },
+    { label: 'FETA', values: ['1.0', '1.5', '2.0', '2.5'], order: 3 },
+    { label: 'ONION', values: ['0.5', '1.0', '1.5', '2.0'], order: 4 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 5 },
+    { label: 'PARM/ASIAGO', values: ['0.5', '0.7', '1.0', '1.2'], order: 6 },
+    { label: 'ALFREDO SAUCE', values: ['0.7', '1.5', '2.0', '2.5'], order: 7 }
+  );
+
+  cards.push(spinachFeta);
+
+  const ultimatePepporoni = createCardObjectV2(
+    'ultimatePepporoni',
+    'Ultimate Pepporoni',
+    'Ultimate Pepporoni',
+    'Ingredients',
+    { label: 'PIZZA SAUCE', values: ['3.0', '4.2', '6.0', '8.0'], order: 1 },
+    { label: 'PIZZA CHEESE', values: ['1.5', '2.5', '3.5', '4.5'], order: 2 },
+    { label: 'PEPPERONI', values: ['16', '24', '32', '46'], order: 3 },
+    { label: 'PROVOLONE', values: ['2.5', '3.5', '4.7', '6.0'], order: 4 },
+    { label: 'PEPPERONI', values: ['16', '24', '32', '46'], order: 5 },
+    { label: 'PARM/ASIAGO', values: ['0.5', '0.7', '1.0', '1.2'], order: 6 },
+    { label: 'OREGANO', values: ['.01', '.02', '.03', '.04'], order: 7 }
+  );
+  cards.push(ultimatePepporoni);
+
+  const wisconsin6Cheese = createCardObjectV2(
+    'wisconsin6Cheese',
+    'Wisconsin 6 Cheese',
+    'Wisconsin 6 Cheese',
+    'Ingredients',
+    { label: 'PIZZA SAUCE', values: ['3.0', '4.2', '6.0', '8.0'], order: 1 },
+    { label: 'PIZZA CHEESE', values: ['1.5', '2.5', '3.5', '4.5'], order: 2 },
+    { label: 'FETA', values: ['1.0', '1.5', '2.0', '2.5'], order: 3 },
+    { label: 'PROVOLONE', values: ['1.0', '2.0', '2.5', '3.5'], order: 4 },
+    { label: 'CHEDDAR BLEND', values: ['1.0', '2.0', '2.5', '3.5'], order: 5 },
+    { label: 'PARM/ASIAGO', values: ['1.0', '1.5', '2.0', '2.5'], order: 6 },
+    { label: 'OREGANO', values: ['.01', '.02', '.03', '.04'], order: 7 }
+  );
+  cards.push(wisconsin6Cheese);
+
   return cards;
 }
 // Card object template
@@ -164,13 +340,19 @@ function getCardCollection() {
 }
 
 function createTabs(card) {
-  $('.container #tabs').append('<li><a href="#cardContainer' + card.id + '">' + card.shortTitle + '</li>');
+  $('.topping-tab-container #tabs').append('<li><a href="#cardContainer' + card.id + '">' + card.shortTitle + '</li>');
 
-  fillTab(card);
+  fillTab(card, 'topping-tab-container');
 }
 
-function fillTab(currentCard) {
-  $('.container').append(
+function createSpecialtyTabs(card) {
+  $('.specialty-tab-container #tabs').append('<li><a href="#cardContainer' + card.id + '">' + card.shortTitle + '</li>');
+
+  fillTab(card, 'specialty-tab-container');
+}
+
+function fillTab(currentCard, container) {
+  $('.' + container).append(
     `
     <div class="cardContainer" id="cardContainer` +
       currentCard.id +
@@ -188,16 +370,20 @@ function fillTab(currentCard) {
         <div class='buttons'>
             <button onclick="addNewBlankBoard('` +
       currentCard.id +
+      `', '` +
+      container +
       `')" class="btn" type="button">Blank Board</button>
             <button onclick="addNewRandomBoard('` +
       currentCard.id +
+      `', '` +
+      container +
       `')" class="btn" type="button">Random Board</button>
         </div>
     </div>`
   );
 
   //addCard(currentCard);
-  $('#cardContent_' + currentCard.id).append(addCardHtmlTable(currentCard, false, false, true));
+  $('#cardContent_' + currentCard.id).append(addCardHtmlTable(currentCard, false, false, true, container));
 }
 
 function toggleMainCard(id) {
@@ -261,73 +447,87 @@ function addCard(currentCard) {
     }
   });
 }
-// function addCardHtml(currentCard, empty, random) {
-//   let cardHtml =
-//     `<div class='card ` +
-//     (empty ? 'empty' : '') +
-//     (random ? 'random' : '') +
-//     `' data-id=` +
-//     currentCard.id +
-//     `>
-//         <div class="buttonRow">
+
+// function addCardHtmlTableV1(currentCard, empty, random, isParent = false) {
+//   let cardHtml = `<div class='card ` + (empty ? 'empty' : '') + (random ? 'random' : '') + `' data-id=` + currentCard.id + `>`;
+//   if (!isParent) {
+//     cardHtml =
+//       cardHtml +
+//       `<div class="buttonRow">
 //             <span id="checkValues" class="check-values btn blue" onclick="validateInputCells('` +
-//     currentCard.id +
-//     `','` +
-//     (empty ? 'empty' : 'random') +
-//     `')">
+//       currentCard.id +
+//       `','` +
+//       (empty ? 'empty' : 'random') +
+//       `')">
 //                 <i id="icon" class="material-icons">check</i>Check All
 //             </span>
 //             <span id="removeBoard" class="remove-button" onclick="removeCard('` +
-//     currentCard.id +
-//     `','` +
-//     (empty ? 'empty' : 'random') +
-//     `')">
+//       currentCard.id +
+//       `','` +
+//       (empty ? 'empty' : 'random') +
+//       `')">
 //                 <i id="icon" class="material-icons">clear</i>
 //             </span>
-//         </div>
-//     `;
-//   let titleRow = "<div class='row title-row'>";
-//   const cardContent = $('#cardContent_' + currentCard.id);
-
-//   titleRow = titleRow += `<div class='cell title-cell' colspan='${currentCard.grid.size.length + 1}'>${currentCard.title}
-//         </div>
 //         </div>`;
-//   //$('#cardContainer' + currentCard.id).prepend(titleRow);
-//   cardHtml += titleRow;
-
-//   let cc = "<div class='cardGrid' id='cardContent_" + currentCard.id + "new'>";
-//   // Transpose rows and columns in the card grid
-//   for (let col = 0; col < currentCard.grid.size.length; col++) {
-//     let column = "<div class='column'>";
-
-//     // Each column has rows
-//     Object.keys(currentCard.grid).forEach((key, index) => {
-//       const row = index + 1; // Increase data-row for every key, starting from 1
-//       const cellVal = currentCard.grid[key][col];
-//       const isLabel = row === 1 || col === 0 || !cellVal; // Check if it's a label cell
-//       let cellContent = '';
-//       if (cellVal) {
-//         cellContent = random & !isLabel ? (shouldShowRandomContent(row) ? currentCard.grid[key][col] : '') : currentCard.grid[key][col];
-//       } else {
-//         cellContent = '<span>&nbsp;</span>';
-//       }
-//       const cellClass = isLabel || !cellVal ? 'label-cell' : 'input-cell';
-//       const cell = `<div class='cell ${cellClass} ${cellContent?.style || ''}' contenteditable='${!isLabel}' data-row='${row}' data-col='${
-//         col + 1 !== 0 ? col + 1 : ''
-//       }' inputmode='decimal' pattern='[0-9]*' type='text'>${
-//         isLabel ? cellContent.label ?? cellContent : empty ? '' : random ? cellContent.label ?? cellContent : ''
-//       }</div>`;
-
-//       column += cell;
-//     });
-//     // Add colspan if the cell has the 'merge' class
-
-//     cc += column + '</div>';
-//     //cardContent.append(column);
 //   }
-//   cc += '</div>';
 
-//   // Add input validation for decimal values
+//   const table = $('<table></table>');
+
+//   // Create the table header row
+//   const titleRow = $('<tr></tr>').addClass('row title-row');
+//   const colspan = currentCard.grid.size.length; // Title cell spans all columns + 1
+//   titleRow.append($(`<td class='cell title-cell' colspan='${colspan}'>${currentCard.title}</td>`));
+//   table.append(titleRow);
+
+//   // Generate data rows and cells based on grid size
+//   for (let row = 1; row <= Object.keys(currentCard.grid).length; row++) {
+//     const tableRow = $('<tr></tr>');
+//     const firstCell = $(currentCard.grid[Object.keys(currentCard.grid)[row - 1]])[0]; // Get first cell DOM element
+
+//     const hasMergeClass = firstCell && firstCell['style'] === 'merge';
+
+//     // Create data cells for each column
+//     for (let col = 0; col < currentCard.grid.size.length; col++) {
+//       if (!hasMergeClass || col === 0) {
+//         // Skip cells if first cell has 'merge' and it's not the first column
+//         const cellVal = currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col]; // Access cell value
+//         const isLabel = row === 1 || col === 0 || !cellVal || isParent; // Check if it's a label cell
+//         let cellContent = '';
+//         if (cellVal) {
+//           cellContent =
+//             random & !isLabel
+//               ? shouldShowRandomContent()
+//                 ? currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col]
+//                 : ''
+//               : currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col];
+//         } else {
+//           cellContent = '<span>&nbsp;</span>';
+//         }
+//         const cellClass = isLabel ? 'label-cell' : 'input-cell';
+//         let colSpan = null;
+//         if (cellContent && cellContent.style && cellContent.style.includes('merge')) {
+//           colSpan = `colspan='${currentCard.grid.size.length}'`; // Set colspan to number of columns
+//         }
+
+//         const cell = $(
+//           `<td class='cell ${cellClass}  ${cellContent?.style || ''}' ${colSpan || ''} contenteditable='${!isLabel}' data-row='${row}' data-col='${
+//             col + 1 !== 0 ? col + 1 : ''
+//           }' inputmode='decimal' pattern='[0-9]*' type='text'>${
+//             isLabel ? cellContent.label ?? cellContent : empty ? '' : random ? cellContent.label ?? cellContent : ''
+//           }</td>`
+//         );
+
+//         tableRow.append(cell);
+//       }
+//     }
+
+//     table.append(tableRow);
+//   }
+
+//   // Add the table to the card content
+//   //  $('#cardContent_' + currentCard.id).append(table);
+
+//   // Add input validation for decimal values (unchanged)
 //   $('.input-cell').on('input', function () {
 //     const inputValue = $(this).text();
 //     const isValidDecimal = /^\d*\.?\d*$/.test(inputValue);
@@ -336,102 +536,11 @@ function addCard(currentCard) {
 //       $(this).text('');
 //     }
 //   });
-//   return cardHtml + cc + '</div>';
+
+//   return cardHtml + table.prop('outerHTML') + '</div>';
 // }
 
-function addCardHtmlTableV1(currentCard, empty, random, isParent = false) {
-  let cardHtml = `<div class='card ` + (empty ? 'empty' : '') + (random ? 'random' : '') + `' data-id=` + currentCard.id + `>`;
-  if (!isParent) {
-    cardHtml =
-      cardHtml +
-      `<div class="buttonRow">
-            <span id="checkValues" class="check-values btn blue" onclick="validateInputCells('` +
-      currentCard.id +
-      `','` +
-      (empty ? 'empty' : 'random') +
-      `')">
-                <i id="icon" class="material-icons">check</i>Check All
-            </span>
-            <span id="removeBoard" class="remove-button" onclick="removeCard('` +
-      currentCard.id +
-      `','` +
-      (empty ? 'empty' : 'random') +
-      `')">
-                <i id="icon" class="material-icons">clear</i>
-            </span>
-        </div>`;
-  }
-
-  const table = $('<table></table>');
-
-  // Create the table header row
-  const titleRow = $('<tr></tr>').addClass('row title-row');
-  const colspan = currentCard.grid.size.length; // Title cell spans all columns + 1
-  titleRow.append($(`<td class='cell title-cell' colspan='${colspan}'>${currentCard.title}</td>`));
-  table.append(titleRow);
-
-  // Generate data rows and cells based on grid size
-  for (let row = 1; row <= Object.keys(currentCard.grid).length; row++) {
-    const tableRow = $('<tr></tr>');
-    const firstCell = $(currentCard.grid[Object.keys(currentCard.grid)[row - 1]])[0]; // Get first cell DOM element
-
-    const hasMergeClass = firstCell && firstCell['style'] === 'merge';
-
-    // Create data cells for each column
-    for (let col = 0; col < currentCard.grid.size.length; col++) {
-      if (!hasMergeClass || col === 0) {
-        // Skip cells if first cell has 'merge' and it's not the first column
-        const cellVal = currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col]; // Access cell value
-        const isLabel = row === 1 || col === 0 || !cellVal || isParent; // Check if it's a label cell
-        let cellContent = '';
-        if (cellVal) {
-          cellContent =
-            random & !isLabel
-              ? shouldShowRandomContent()
-                ? currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col]
-                : ''
-              : currentCard.grid[Object.keys(currentCard.grid)[row - 1]][col];
-        } else {
-          cellContent = '<span>&nbsp;</span>';
-        }
-        const cellClass = isLabel ? 'label-cell' : 'input-cell';
-        let colSpan = null;
-        if (cellContent && cellContent.style && cellContent.style.includes('merge')) {
-          colSpan = `colspan='${currentCard.grid.size.length}'`; // Set colspan to number of columns
-        }
-
-        const cell = $(
-          `<td class='cell ${cellClass}  ${cellContent?.style || ''}' ${colSpan || ''} contenteditable='${!isLabel}' data-row='${row}' data-col='${
-            col + 1 !== 0 ? col + 1 : ''
-          }' inputmode='decimal' pattern='[0-9]*' type='text'>${
-            isLabel ? cellContent.label ?? cellContent : empty ? '' : random ? cellContent.label ?? cellContent : ''
-          }</td>`
-        );
-
-        tableRow.append(cell);
-      }
-    }
-
-    table.append(tableRow);
-  }
-
-  // Add the table to the card content
-  //  $('#cardContent_' + currentCard.id).append(table);
-
-  // Add input validation for decimal values (unchanged)
-  $('.input-cell').on('input', function () {
-    const inputValue = $(this).text();
-    const isValidDecimal = /^\d*\.?\d*$/.test(inputValue);
-    if (!isValidDecimal) {
-      // Clear the input if it's not a valid decimal
-      $(this).text('');
-    }
-  });
-
-  return cardHtml + table.prop('outerHTML') + '</div>';
-}
-
-function addCardHtmlTable(currentCard, empty, random, isParent = false) {
+function addCardHtmlTable(currentCard, empty, random, isParent = false, container) {
   let cardHtml = `<div class='card ` + (empty ? 'empty' : '') + (random ? 'random' : '') + `' data-id=` + currentCard.id + `>`;
   if (!isParent) {
     cardHtml =
@@ -441,6 +550,8 @@ function addCardHtmlTable(currentCard, empty, random, isParent = false) {
       currentCard.id +
       `','` +
       (empty ? 'empty' : 'random') +
+      `', '` +
+      container +
       `')">
                   <i id="icon" class="material-icons">check</i>Check All
               </span>
@@ -495,17 +606,20 @@ function addCardHtmlTable(currentCard, empty, random, isParent = false) {
       for (const cellValue of rowData.cells) {
         const isLabel = isParent || !cellValue;
         //let cellContent = empty ? '' : random ? cellValue?.label ?? cellValue : cellValue?.label ?? cellValue;
-        let cellContent = random & !isLabel ? (shouldShowRandomContent() ? cellValue : '') : cellValue;
+        const x = shouldShowRandomContent();
+        let cellContent = random & !isLabel ? (x ? cellValue : '') : cellValue;
         const cellClass = isLabel ? 'label-cell' : 'input-cell';
 
         const colspan = currentColspan > 1 ? currentColspan - 1 : 1; // Update current colspan for next cells
         currentColspan = colspan; // Update current colspan for next iteration
 
         const cell = $(
-          `<td class='cell ${cellClass} ${rowClass}  ${colspan > 1 ? `colspan='${colspan}'` : ''}' contenteditable='${!isLabel}' data-row='${
+          `<td class='cell ${cellClass} ${rowClass}  ${colspan > 1 ? `colspan='${colspan}'` : ''} ${
+            empty ? 'input-cell' : ''
+          }' contenteditable='${!isLabel}' data-row='${
             rowData.order + 1
           }' data-col='${cellIndex}' data-input='${cellContent}' inputmode='decimal' pattern='[0-9]*' type='text'>${
-            isLabel ? cellContent : empty ? '' : random ? cellValue : ''
+            isLabel ? cellContent : empty ? '' : random ? cellContent : ''
           }</td>`
         );
 
@@ -533,14 +647,15 @@ function addCardHtmlTable(currentCard, empty, random, isParent = false) {
 
   return cardHtml + table.prop('outerHTML') + '</div>';
 }
-function validateInputCells(card, board) {
+//collection is the card collection
+function validateInputCells(card, board, collectionName) {
   $('#cardContainer' + card + ' > .' + board)
     .find('.input-cell')
     .each(function () {
       const row = parseInt($(this).data('row'));
       const col = parseInt($(this).data('col'));
       const enteredValue = $(this).text();
-      const card = $.grep(cardCollection, (c) => {
+      const card = $.grep(collectionName == 'specialty-tab-container' ? specialtyCardCollection : toppingCardCollection, (c) => {
         return c.id === $(this).closest('.card').data('id');
       })[0];
 
@@ -555,13 +670,14 @@ function validateInputCells(card, board) {
 }
 function verifyInput(card, row, col, enteredValue) {
   // Check if the provided row and column are within the valid range
-  if (row < 1 || row > card.grid.size.length || col < 1 || col > card.grid.size.length) {
+  if (row < 1 || col < 1) {
     console.error('Invalid row or column provided.');
     return false;
   }
 
   // Get the correct value for the specified row and column from the card object
-  const correctValue = card.grid[Object.keys(card.grid)[row - 1]][col - 1];
+  //const correctValue = card.grid[Object.keys(card.grid)[row - 1]][col - 1];
+  const correctValue = card.grid.rows[row - 2].cells[col - 1];
 
   // Convert the entered value to a float for accurate comparison
   const enteredFloat = parseFloat(enteredValue);
@@ -583,8 +699,8 @@ function shouldShowRandomContent() {
   return random ?? r; // Adjust the threshold as needed
 }
 
-function addNewBlankBoard(id) {
-  let card = $.grep(cardCollection, (c) => {
+function addNewBlankBoard(id, collectionName) {
+  let card = $.grep(collectionName == 'specialty-tab-container' ? specialtyCardCollection : toppingCardCollection, (c) => {
     return c.id === id;
   })[0];
   if (document.getElementsByClassName('empty')) {
@@ -593,11 +709,11 @@ function addNewBlankBoard(id) {
       .remove();
   }
   setTimeout(() => {
-    $('#cardContainer' + card.id).append(addCardHtmlTable(card, true, false));
+    $('#cardContainer' + card.id).append(addCardHtmlTable(card, true, false, false, collectionName));
   }, 200);
 }
-function addNewRandomBoard(id) {
-  let card = $.grep(cardCollection, (c) => {
+function addNewRandomBoard(id, collectionName) {
+  let card = $.grep(collectionName == 'specialty-tab-container' ? specialtyCardCollection : toppingCardCollection, (c) => {
     return c.id === id;
   })[0];
   if (document.getElementsByClassName('random')) {
@@ -606,7 +722,7 @@ function addNewRandomBoard(id) {
       .remove();
   }
   setTimeout(() => {
-    $('#cardContainer' + card.id).append(addCardHtmlTable(card, false, true));
+    $('#cardContainer' + card.id).append(addCardHtmlTable(card, false, true, false, collectionName));
   }, 200);
 }
 
@@ -614,19 +730,29 @@ function removeCard(card, board) {
   $('#cardContainer' + card + ' > .' + board).remove();
 }
 
-var cardCollection = [];
+let toppingCardCollection = [];
+let specialtyCardCollection = [];
 $(document).ready(function () {
-  cardCollection = getCardCollection();
+  toppingCardCollection = getCardCollection();
   // Initial card display
-  cardCollection.forEach((card) => {
+  toppingCardCollection.forEach((card) => {
     createTabs(card);
+  });
+
+  specialtyCardCollection = getSpecialtyCardCollection();
+  // Initial card display
+  specialtyCardCollection.forEach((card) => {
+    createSpecialtyTabs(card);
   });
   //createTabs(cardCollection[0])
   $('.pages').tabs();
   $('.pages').tabs('option', 'active', 0);
 
-  $('.container').tabs();
-  $('.container').tabs('option', 'active', 0);
+  $('.topping-tab-container').tabs();
+  $('.topping-tab-container').tabs('option', 'active', 0);
+
+  $('.specialty-tab-container').tabs();
+  $('.specialty-tab-container').tabs('option', 'active', 0);
 
   // $(document).on('input', '.input-cell', function () {
   //     const row = parseInt($(this).data('row'));
