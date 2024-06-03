@@ -45,12 +45,16 @@ function createCardObjectV2(id, title, shortTitle, gridTitle, ...args) {
   // Sort rows based on 'order' property (ascending)
   rows.sort((a, b) => a.order - b.order);
 
+  let header = [gridTitle, '10"', '12"', '14"', '16"'];
+  if (typeof gridTitle === 'object') {
+    header = [gridTitle.label].concat(gridTitle.headers);
+  }
   return {
     id,
     title,
     shortTitle,
     grid: {
-      header: [gridTitle, '10"', '12"', '14"', '16"'],
+      header: header,
       rows,
     },
   };
@@ -270,9 +274,9 @@ function getCardCollection() {
     'nycheese',
     'NY Cheese',
     'NY Style Cheese',
-    'Size',
-    { label: 'Pizza Cheese', values: ['', '2.5', '3.5', '4.5'], order: 1 },
-    { label: 'Provolone', values: ['', '3.0', '4.0', '5.5'], order: 2 },
+    { label: 'Size', headers: ['12"', '14"', '16"'] },
+    { label: 'Pizza Cheese', values: ['2.5', '3.5', '4.5'], order: 1 },
+    { label: 'Provolone', values: ['3.0', '4.0', '5.5'], order: 2 },
     { label: 'BOTH cheeses get topped!', style: 'merge', order: 3 }
   );
   cards.push(nycheeses);
