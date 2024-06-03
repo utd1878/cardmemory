@@ -1,0 +1,64 @@
+.cell[data-col='0'] {
+  width: 200px;
+}
+.cell[data-col='2'],
+.cell[data-col='3'],
+.cell[data-col='4'],
+.cell[data-col='5'] {
+  width: 50px;
+}
+.cell[data-col='1'],
+.cell[data-col='3'] {
+  color: red !important;
+  font-weight: 600;
+}
+/* Specify colors for each row and column */
+.cell[data-row='0'][data-col='0'] {
+  background-color: blue;
+  color: White !important;
+}
+.cell[data-row='0'][data-col='1'] {
+  background-color: Red;
+  color: White !important;
+}
+.cell[data-row='0'][data-col='2'] {
+  background-color: lightskyblue;
+  color: White !important;
+}
+.cell[data-row='0'][data-col='3'] {
+  background-color: Red;
+  color: White !important;
+}
+.cell[data-row='0'][data-col='4'] {
+  background-color: lightskyblue;
+  color: White !important;
+}
+
+.cell.cheese[data-row='2'][data-col='0'] {
+  background-color: Yellow;
+}
+
+.cell.cheese[data-row='3'][data-col='0'] {
+  background-color: Green;
+}
+
+.cell.cheese[data-row='4'][data-col='0'] {
+  background-color: Blue;
+  color: white;
+}
+
+/* Specific cell styling for Row 1, Column 2-5 */
+.cell.blue {
+  background-color: LightBlue;
+  color: black;
+}
+
+.cell.white {
+  background-color: white;
+  color: black;
+}
+
+.merged-cell {
+  background-color: darkorange !important;
+  color: black !important;
+}
